@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Student Details</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>Name:</strong> {{ student.name }}</li>
+        <li class="list-group-item"><strong>Level:</strong> {{ student.level }}</li>
+    </ul>
+    <a href="{% url 'index' %}" class="btn btn-primary">Back</a>
+{% endblock %}
