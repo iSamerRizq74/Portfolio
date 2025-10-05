@@ -63,7 +63,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-12 sm:py-16 bg-gray-900"
+      className="py-12 sm:py-16 bg-[#E6E6E6] dark:bg-gray-900 transition-colors duration-300"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -78,8 +78,8 @@ const About = () => {
             className="text-center mb-6 sm:mb-8"
             variants={prefersReducedMotion ? undefined : item}
           >
-            <h2 className="text-3xl xs:text-4xl font-bold text-white mb-2 sm:mb-3">
-              About <span className="text-blue-400">Me</span>
+            <h2 className="text-3xl xs:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
+              About <span className="text-blue-500 dark:text-blue-400">Me</span>
             </h2>
             <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-3 sm:mb-4" />
           </motion.div>
@@ -89,10 +89,10 @@ const About = () => {
               className="w-full max-w-3xl text-center"
               variants={prefersReducedMotion ? undefined : item}
             >
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
                 Who Am I?
               </h3>
-              <div className="space-y-4 text-gray-400 leading-relaxed text-sm sm:text-base text-justify px-2">
+              <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base text-justify px-2">
                 <p className="max-w-2xl mx-auto">
                   I'm a passionate Full Stack Developer with a strong foundation in both frontend and backend development.
                   With a keen eye for design and a love for clean, efficient code, I create web applications that are

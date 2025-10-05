@@ -133,7 +133,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-dark-900 relative overflow-hidden"
+      className="py-20 bg-[#CCCCCC] dark:bg-gray-900 relative overflow-hidden transition-colors duration-300"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -157,16 +157,16 @@ const Contact = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-3xl xs:text-4xl font-bold text-white mb-2 sm:mb-3"
+                  className="text-3xl xs:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3"
                 >
-                  Get In <span className="text-blue-400">Touch</span>
+                  Get In <span className="text-blue-500 dark:text-blue-400">Touch</span>
                 </motion.h2>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-3 sm:mb-4" />
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg"
+                  className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg"
                 >
                   Have a project or potential opportunities in mind? Feel free to reach out!
                 </motion.p>
@@ -174,7 +174,7 @@ const Contact = () => {
 
               {isSubmitted ? (
                 <motion.div
-                  className="bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-xl p-8 text-center"
+                  className="bg-white/80 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
@@ -182,16 +182,16 @@ const Contact = () => {
                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
                       <FiCheckCircle className="text-3xl text-green-500" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                    <p className="text-gray-300">
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Message Sent!</h3>
+                    <p className="text-gray-600 dark:text-gray-400">
                       Thank you for reaching out. I'll get back to you as soon as possible.
                     </p>
                   </div>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-xl p-8">
+                <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-8">
                   {error && (
-                    <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-lg text-sm">
+                    <div className="bg-red-100 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 p-4 rounded-lg text-sm">
                       {error}
                     </div>
                   )}
@@ -207,7 +207,7 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all hover:border-gray-500/50"
+                        className="w-full px-4 py-3 bg-white dark:bg-gray-700/30 border border-gray-200 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                         placeholder=""
                         required
                       />
@@ -223,7 +223,7 @@ const Contact = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all hover:border-gray-500/50"
+                        className="w-full px-4 py-3 bg-white dark:bg-gray-700/30 border border-gray-200 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                         placeholder=""
                         required
                       />
@@ -240,7 +240,7 @@ const Contact = () => {
                       rows="5"
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all hover:border-gray-500/50 resize-none"
+                      className="w-full px-4 py-3 bg-white dark:bg-gray-700/30 border border-gray-200 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 resize-none"
                       placeholder=""
                       required
                     ></textarea>
@@ -252,7 +252,7 @@ const Contact = () => {
                       disabled={isSubmitting}
                       className={`group relative w-full overflow-hidden px-6 py-3.5 rounded-lg font-medium text-white transition-all duration-300 ${isSubmitting
                         ? 'bg-gray-600/50 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 hover:shadow-lg hover:shadow-primary-500/20'
+                        : 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:shadow-primary-500/20'
                         }`}
                     >
                       <span className="relative z-10 flex items-center justify-center">
@@ -274,7 +274,7 @@ const Contact = () => {
             {/* Contact Information */}
             <motion.div variants={itemVariants} className="space-y-8">
               <div className="pt-12 mt-8">
-                <h3 className="text-lg font-semibold text-white mb-6">Contact Information</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Contact Information</h3>
 
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (

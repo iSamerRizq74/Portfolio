@@ -65,7 +65,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#CCCCCC] dark:bg-gray-900">
       {/* Background elements */}
       <motion.div 
         className="absolute inset-0 z-0"

@@ -53,7 +53,7 @@ const Skills = () => {
 
 
   return (
-    <section id="skills" className="py-20 bg-gray-900">
+    <section id="skills" className="py-20 bg-[#CCCCCC] dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,11 +62,11 @@ const Skills = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-white mb-3">
-            My <span className="text-blue-400">Skills</span>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
+            My <span className="text-blue-500 dark:text-blue-400">Skills</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             A blend of technical skills and modern tools i use to deliver results.
           </p>
         </motion.div>
@@ -79,19 +79,19 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center mb-4">
-                <div className="p-2 bg-gray-700 rounded-lg mr-4">
+                <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mr-4">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{category.title}</h3>
               </div>
               <div className="space-y-2">
                 {category.items.map((item, i) => (
                   <div className="flex items-center space-x-3 py-1">
                     <span className="flex-shrink-0">{item.icon}</span>
-                    <span className="text-gray-300">{item.name}</span>
+                    <span className="text-gray-600 dark:text-gray-300">{item.name}</span>
                   </div>
                 ))}
               </div>

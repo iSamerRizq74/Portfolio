@@ -126,7 +126,7 @@ const Work = () => {
   ];
 
   return (
-    <section id="work" className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section id="work" className="py-16 bg-[#E6E6E6] dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
