@@ -257,10 +257,10 @@ function App() {
         <Contact />
       </main>
 
-      <footer className="bg-gray-800 text-white py-8">
+      <footer className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-lg"> {new Date().getFullYear()} Samer Baher Rizk.</p>
-          <p className="text-gray-400 mb-6">All rights reserved.</p>
+          <p className="text-gray-200 dark:text-gray-400 mb-6">All rights reserved.</p>
           <div className="flex justify-center space-x-6">
             <a
               href="https://github.com/isamerrizq74"

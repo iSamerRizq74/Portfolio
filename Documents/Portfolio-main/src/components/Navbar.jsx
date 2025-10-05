@@ -131,8 +131,8 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'py-2 bg-gradient-to-r from-gray-800/95 to-gray-700/95 backdrop-blur-md border-b border-gray-600/30 shadow-lg' 
-            : 'py-4 bg-gradient-to-r from-gray-800 to-gray-700 backdrop-blur-md'
+            ? 'py-2 bg-gradient-to-r from-gray-700/95 to-gray-600/95 dark:from-gray-800/95 dark:to-gray-700/95 backdrop-blur-md border-b border-gray-300/30 dark:border-gray-600/30 shadow-lg' 
+            : 'py-4 bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 backdrop-blur-md'
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
