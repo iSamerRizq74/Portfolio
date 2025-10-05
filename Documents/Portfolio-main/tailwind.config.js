@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: 'class',
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     screens: {
       xs: "480px",
@@ -12,6 +16,46 @@ export default {
     },
     extend: {
       colors: {
+        // Light theme colors
+        light: {
+          primary: {
+            DEFAULT: '#2563eb',
+            light: '#3b82f6',
+            dark: '#1d4ed8',
+          },
+          background: {
+            DEFAULT: '#ffffff',
+            secondary: '#f9fafb',
+            tertiary: '#f3f4f6',
+          },
+          text: {
+            primary: '#111827',
+            secondary: '#4b5563',
+            tertiary: '#6b7280',
+          },
+          border: '#e5e7eb',
+          accent: '#3b82f6',
+        },
+        // Dark theme colors (existing as dark mode)
+        dark: {
+          primary: {
+            DEFAULT: '#3b82f6',
+            light: '#60a5fa',
+            dark: '#2563eb',
+          },
+          background: {
+            DEFAULT: '#111827',
+            secondary: '#1f2937',
+            tertiary: '#374151',
+          },
+          text: {
+            primary: '#f9fafb',
+            secondary: '#d1d5db',
+            tertiary: '#9ca3af',
+          },
+          border: '#374151',
+          accent: '#60a5fa',
+        },
         primary: {
           50: "#f0f9ff",
           100: "#e0f2fe",

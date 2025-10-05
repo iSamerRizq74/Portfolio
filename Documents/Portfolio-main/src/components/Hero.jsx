@@ -65,56 +65,23 @@ const Hero = () => {
   };
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4 sm:px-6 lg:px-8"
-    >
-      {/* Optimized Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent w-full h-full" />
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-stripes.png')] opacity-5" />
-
-        {/* Reduced motion for background elements on mobile */}
-        {!prefersReducedMotion && (
-          <>
-            <motion.div
-              className="absolute top-1/4 -left-10 sm:-left-20 w-40 sm:w-64 h-40 sm:h-64 bg-blue-500/20 rounded-full mix-blend-multiply filter blur-2xl sm:blur-3xl opacity-70"
-              animate={{
-                x: [0, 10, 0],
-                y: [0, -15, 0],
-                scale: [1, 1.05, 1]
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut'
-              }}
-            />
-            <motion.div
-              className="absolute bottom-1/4 -right-10 sm:-right-20 w-48 sm:w-72 h-48 sm:h-72 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-2xl sm:blur-3xl opacity-70"
-              animate={{
-                x: [0, -15, 0],
-                y: [0, 15, 0],
-                scale: [1, 0.95, 1]
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'easeInOut',
-                delay: 2
-              }}
-            />
-          </>
-        )}
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-900">
+      {/* Background elements */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        variants={backgroundAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        <div className="absolute inset-0 bg-gray-50 dark:bg-gray-900" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9IiMxMTExMTEiLz4KICA8cGF0aCBkPSJNMzYgMzRWNjBINnYtMjZoMzB6TTYgMjZoMzBWNmgzMHYyMHoiIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgo8L3N2Zz4=')] opacity-5 dark:opacity-10" />
+      </motion.div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto pt-12 sm:pt-20 lg:pt-24 pb-8 sm:pb-16 lg:pb-20">
+      <div className="container relative z-10 px-4 mx-auto pt-20 md:pt-28">
         <motion.div
-          className="mx-auto max-w-4xl text-center px-4 sm:px-6 lg:px-8"
-          variants={prefersReducedMotion ? undefined : container}
+          className="max-w-4xl mx-auto text-center"
+          variants={container}
           initial="hidden"
           animate="show"
         >
@@ -129,9 +96,9 @@ const Hero = () => {
           </motion.div>
 
           {/* Name - Optimized for mobile */}
-          <motion.h1
-            variants={prefersReducedMotion ? undefined : item}
-            className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-2 sm:mb-4 leading-tight"
+          <motion.h1 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
+            variants={item}
           >
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               Samer Baher Rizk
@@ -183,7 +150,7 @@ const Hero = () => {
 
             <a
               href="#work"
-              className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-400 text-blue-400 rounded-full font-medium hover:bg-blue-500/10 transition-all duration-300 flex items-center justify-center group text-sm sm:text-base"
+              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-full transition-colors duration-200 group"
               aria-label="View my work"
             >
               View My Work

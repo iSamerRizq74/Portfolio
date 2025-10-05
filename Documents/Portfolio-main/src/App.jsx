@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 import './index.css';
@@ -19,19 +19,89 @@ function App() {
   const [error, setError] = useState(null);
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
 
+  // Debug: Show current theme status
+  useEffect(() => {
+    const htmlClass = document.documentElement.classList;
+    const isDark = htmlClass.contains('dark');
+    console.log('Theme state:', {
+      darkMode,
+      htmlHasDarkClass: isDark,
+      localStorageTheme: localStorage.getItem('theme'),
+      prefersDark: window.matchMedia('(prefers-color-scheme: dark)').matches
+    });
+  }, [darkMode]);
+
+  // Handle WhatsApp click
+  const handleWhatsAppClick = useCallback((e) => {
+    if (e) e.preventDefault();
+    setShowWhatsAppModal(true);
+  }, []);
+
+  // Set up event listener for WhatsApp modal
+  useEffect(() => {
+    const handleWhatsAppModalEvent = () => {
+      setShowWhatsAppModal(true);
+    };
+
+    window.addEventListener('openWhatsAppModal', handleWhatsAppModalEvent);
+    return () => {
+      window.removeEventListener('openWhatsAppModal', handleWhatsAppModalEvent);
+    };
+  }, []);
+
+  // Toggle dark mode
+  const toggleDarkMode = useCallback(() => {
+    const newDarkMode = !darkMode;
+    console.log('Toggling theme to:', newDarkMode ? 'dark' : 'light');
+    
+    setDarkMode(newDarkMode);
+    const html = document.documentElement;
+    
+    if (newDarkMode) {
+      html.setAttribute('data-theme', 'dark');
+      html.classList.add('dark');
+      document.body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.removeAttribute('data-theme');
+      html.classList.remove('dark');
+      document.body.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+    
+    console.log('After toggle:', {
+      darkMode: newDarkMode,
+      htmlClass: html.className,
+      bodyClass: document.body.className,
+      localStorage: localStorage.getItem('theme')
+    });
+  }, [darkMode]);
+
   // Set dark mode based on user preference and handle loading state
   useEffect(() => {
     console.log('App: useEffect running');
     try {
       const savedTheme = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const html = document.documentElement;
+      const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+      
+      console.log('Theme initialization:', {
+        savedTheme,
+        prefersDark,
+        shouldBeDark,
+        currentDark: html.classList.contains('dark')
+      });
 
-      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        setDarkMode(true);
-        document.documentElement.classList.add('dark');
+      setDarkMode(shouldBeDark);
+      if (shouldBeDark) {
+        html.setAttribute('data-theme', 'dark');
+        html.classList.add('dark');
+        document.body.classList.add('dark');
       } else {
-        setDarkMode(false);
-        document.documentElement.classList.remove('dark');
+        html.removeAttribute('data-theme');
+        html.classList.remove('dark');
+        document.body.classList.remove('dark');
       }
 
       // Add event listener for WhatsApp modal
@@ -57,13 +127,6 @@ function App() {
       setIsLoading(false);
     }
   }, []);
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', newDarkMode ? 'dark' : 'light');
-  };
 
   if (error) {
     return (
@@ -100,10 +163,6 @@ function App() {
     );
   }
 
-  // Handle WhatsApp click
-  const handleWhatsAppClick = () => {
-    setShowWhatsAppModal(true);
-  };
 
   // Close modal
   const closeModal = () => {
@@ -112,6 +171,10 @@ function App() {
 
   return (
     <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300 relative">
+      {/* Debug indicator - can be removed later */}
+      <div className="fixed bottom-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs z-50">
+        {darkMode ? 'DARK' : 'LIGHT'} MODE
+      </div>
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
@@ -196,7 +259,7 @@ function App() {
 
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-lg">© {new Date().getFullYear()} Samer Baher Rizk.</p>
+          <p className="text-lg"> {new Date().getFullYear()} Samer Baher Rizk.</p>
           <p className="text-gray-400 mb-6">All rights reserved.</p>
           <div className="flex justify-center space-x-6">
             <a
