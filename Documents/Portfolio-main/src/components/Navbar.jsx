@@ -245,19 +245,17 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             variants={mobileMenuVariants}
             ref={mobileMenuRef}
           >
-            <div className="px-4 py-3">
-              <div className="flex flex-wrap justify-center gap-2 mb-3">
-                {navItems.map((item) => (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors whitespace-nowrap"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
+            <div className="px-4 py-3 space-y-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
               
               <div className="pt-4 border-t border-gray-700/50 mt-2">
                 <div className="flex justify-center space-x-4 py-3">
@@ -275,7 +273,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                   ))}
                 </div>
 
-                <div className="flex flex-col space-y-3 mt-3 pt-3 border-t border-gray-700/50">
+                <div className="flex flex-col space-y-3 mt-3">
                   <button
                     onClick={() => {
                       toggleDarkMode();
