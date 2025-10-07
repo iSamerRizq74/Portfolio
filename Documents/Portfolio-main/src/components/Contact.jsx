@@ -27,19 +27,25 @@ const Contact = () => {
       icon: FiMail,
       label: 'Email',
       value: 'samer.baher74@gmail.com',
-      color: 'from-blue-500 to-cyan-500',
+      color: 'from-blue-600 to-blue-700',
+      labelColor: 'text-blue-600 dark:text-blue-400',
+      valueColor: 'text-gray-600 dark:text-gray-300'
     },
     {
       icon: FiPhone,
       label: 'Phone',
       value: '01065290660',
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-purple-600 to-purple-700',
+      labelColor: 'text-purple-600 dark:text-purple-400',
+      valueColor: 'text-gray-600 dark:text-gray-300'
     },
     {
       icon: FiMapPin,
       label: 'Location',
       value: 'Cairo, Egypt',
-      color: 'from-green-500 to-emerald-500',
+      color: 'from-green-600 to-green-700',
+      labelColor: 'text-green-600 dark:text-green-400',
+      valueColor: 'text-gray-600 dark:text-gray-300'
     },
   ];
 
@@ -174,7 +180,7 @@ const Contact = () => {
 
               {isSubmitted ? (
                 <motion.div
-                  className="bg-white/80 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
+                  className="bg-gray-50/90 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-6 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
@@ -189,7 +195,7 @@ const Contact = () => {
                   </div>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 bg-white/80 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-8">
+                <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50/90 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-8">
                   {error && (
                     <div className="bg-red-100 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 p-4 rounded-lg text-sm">
                       {error}
@@ -198,7 +204,7 @@ const Contact = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                      <label htmlFor="name" className="block text-sm font-medium text-black dark:text-gray-300">
                         Name <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -207,14 +213,14 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-gray-700/30 border border-gray-200 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                        className="w-full px-4 py-3 bg-white/50 dark:bg-gray-700/30 border border-gray-200/80 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500"
                         placeholder=""
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                      <label htmlFor="email" className="block text-sm font-medium text-black dark:text-gray-300">
                         Email <span className="text-red-400">*</span>
                       </label>
                       <input
@@ -223,7 +229,7 @@ const Contact = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-white dark:bg-gray-700/30 border border-gray-200 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                        className="w-full px-4 py-3 bg-white/50 dark:bg-gray-700/30 border border-gray-200/80 dark:border-gray-600/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-500"
                         placeholder=""
                         required
                       />
@@ -231,7 +237,7 @@ const Contact = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                    <label htmlFor="message" className="block text-sm font-medium text-black dark:text-gray-300">
                       Message <span className="text-red-500">*</span>
                     </label>
                     <textarea
@@ -283,13 +289,10 @@ const Contact = () => {
                         <info.icon className="w-6 h-6" />
                       </div>
                       <div className="ml-4">
-                        <h4 className="text-gray-300 font-medium">{info.label}</h4>
-                        <a
-                          href={info.href}
-                          className="text-gray-400 hover:text-primary-400 transition-colors"
-                        >
+                        <p className={`text-sm font-medium ${info.labelColor}`}>{info.label}</p>
+                        <p className={`${info.valueColor} font-medium text-sm sm:text-base`}>
                           {info.value}
-                        </a>
+                        </p>
                       </div>
                     </div>
                   ))}

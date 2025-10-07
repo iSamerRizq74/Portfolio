@@ -62,11 +62,11 @@ const Skills = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-3">
+          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-3">
             My <span className="text-blue-500 dark:text-blue-400">Skills</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto text-lg">
             A blend of technical skills and modern tools i use to deliver results.
           </p>
         </motion.div>
@@ -85,7 +85,7 @@ const Skills = () => {
                 <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mr-4">
                   {category.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{category.title}</h3>
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white">{category.title}</h3>
               </div>
               <div className="space-y-2">
                 {category.items.map((item, i) => (

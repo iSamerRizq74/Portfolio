@@ -81,7 +81,7 @@ const About = () => {
             <h2 className="text-3xl xs:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
               About <span className="text-blue-500 dark:text-blue-400">Me</span>
             </h2>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-3 sm:mb-4" />
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4" />
           </motion.div>
 
           <div className="flex justify-center">
@@ -89,22 +89,18 @@ const About = () => {
               className="w-full max-w-3xl text-center"
               variants={prefersReducedMotion ? undefined : item}
             >
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
+              <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-3">
                 Who Am I?
               </h3>
-              <div className="space-y-4 text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base text-justify px-2">
+              <div className="space-y-8 text-gray-700 dark:text-gray-300 leading-relaxed text-lg text-justify px-2">
                 <p className="max-w-2xl mx-auto">
-                  I'm a passionate Full Stack Developer with a strong foundation in both frontend and backend development.
-                  With a keen eye for design and a love for clean, efficient code, I create web applications that are
-                  not only functional but also provide an exceptional user experience.
+                  I’m a passionate Full Stack Developer with strong expertise in both frontend and backend development. I’m dedicated to building creative and reliable solutions that make an impact. I enjoy turning complex ideas into modern, scalable, and responsive web applications. My focus is on writing clean and efficient code that delivers high-performance and meaningful digital experiences for users.
                 </p>
                 <p className="max-w-2xl mx-auto">
-                  My journey in web development started several years ago, and since then, I've had the opportunity to
-                  work on a variety of projects, from small business websites to complex web applications. I'm
-                  constantly learning and staying up-to-date with the latest technologies.
+                  My journey in web development began several years ago, during which I’ve worked on a wide range of projects from small business websites to web platforms. I’ve contributed to full stack development, designing intuitive interfaces and building secure, high-performance APIs. I’m dedicated to writing clean code and continuously improving my skills through collaboration and problem-solving.
                 </p>
                 <p className="max-w-2xl mx-auto">
-                  When I'm not coding, I dedicate my time to exploring emerging technologies, contributing to open-source projects, and sharing knowledge within the developer community. This allows me to stay current, collaborate with others, and continuously refine my skills as a developer.
+                  When I’m not coding, I enjoy exploring emerging technologies, contributing to open-source projects, and sharing knowledge within the developer community. These experiences help me stay up-to-date, collaborate effectively, and continuously refine my technical skills. I’m always eager to take on new challenges and build innovative, user-focused, and meaningful products that make an impact.
                 </p>
               </div>
             </motion.div>
@@ -118,19 +114,19 @@ const About = () => {
             whileInView="show"
             viewport={{ once: true, margin: "-30px 0px -30px 0px" }}
           >
-            <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-8 max-w-3xl mx-auto shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+            <div className="bg-gray-100 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700/50 rounded-xl p-8 max-w-3xl mx-auto shadow-lg dark:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
               <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-5">
-                  <FaFilePdf className="w-8 h-8 text-blue-400" />
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-500/10 rounded-full flex items-center justify-center mb-5">
+                  <FaFilePdf className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-3">CV</h3>
-                <p className="text-gray-400 mb-8 max-w-lg">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">CV</h3>
+                <p className="text-gray-700 dark:text-gray-400 mb-8 max-w-lg">
                   Explore my professional journey, skills, and experience in detail.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs">
                   <button
                     onClick={handleViewCV}
-                    className="group flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+                    className="group flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
                   >
                     <FiEye className="mr-2 group-hover:scale-110 transition-transform" />
                     View
@@ -138,7 +134,7 @@ const About = () => {
                   <a
                     href="/SamerCV.pdf"
                     download="SamerBaherRizk_CV.pdf"
-                    className="group flex-1 flex items-center justify-center px-6 py-3 bg-transparent border border-gray-600 hover:border-blue-500 text-gray-300 hover:text-blue-400 font-medium rounded-lg transition-all duration-300"
+                    className="group flex-1 flex items-center justify-center px-6 py-3 bg-transparent border border-gray-300 hover:border-blue-500 text-gray-800 hover:text-blue-600 dark:border-gray-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium rounded-lg transition-all duration-300"
                   >
                     <FiDownload className="mr-2 group-hover:scale-110 transition-transform" />
                     Download

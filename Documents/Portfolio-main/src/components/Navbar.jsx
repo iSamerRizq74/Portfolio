@@ -161,12 +161,17 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
             {/* Desktop Social and Theme */}
             <div className="hidden md:flex items-center space-x-2">
+              {/* Theme Toggle */}
               <button
                 onClick={toggleDarkMode}
-                className="p-2.5 text-gray-200 hover:text-white rounded-full hover:bg-gray-600/30 transition-colors"
+                className="p-2 -mr-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
                 aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
-                {darkMode ? <FiSun className="w-6 h-6" /> : <FiMoon className="w-6 h-6" />}
+                {darkMode ? (
+                  <FiMoon className="w-5 h-5 text-gray-200" />
+                ) : (
+                  <FiSun className="w-5 h-5 text-white" />
+                )}
               </button>
               
               <div className="relative group" ref={socialMenuRef}>
@@ -240,17 +245,19 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             variants={mobileMenuVariants}
             ref={mobileMenuRef}
           >
-            <div className="px-4 py-3 space-y-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
+            <div className="px-4 py-3">
+              <div className="flex flex-wrap justify-center gap-2 mb-3">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors whitespace-nowrap"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
               
               <div className="pt-4 border-t border-gray-700/50 mt-2">
                 <div className="flex justify-center space-x-4 py-3">
@@ -268,7 +275,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                   ))}
                 </div>
 
-                <div className="flex flex-col space-y-3 mt-3">
+                <div className="flex flex-col space-y-3 mt-3 pt-3 border-t border-gray-700/50">
                   <button
                     onClick={() => {
                       toggleDarkMode();

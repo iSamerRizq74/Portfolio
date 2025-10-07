@@ -171,10 +171,6 @@ function App() {
 
   return (
     <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300 relative">
-      {/* Debug indicator - can be removed later */}
-      <div className="fixed bottom-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs z-50">
-        {darkMode ? 'DARK' : 'LIGHT'} MODE
-      </div>
       <Navbar
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}

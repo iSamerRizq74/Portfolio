@@ -29,7 +29,7 @@ const CV = () => {
   };
 
   return (
-    <section id="cv" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+    <section id="cv" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -39,13 +39,13 @@ const CV = () => {
           variants={container}
         >
           <motion.h2 
-            className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-500 bg-clip-text text-transparent"
             variants={item}
           >
             CV
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-400 max-w-3xl mx-auto"
+            className="text-xl text-gray-800 dark:text-gray-300 max-w-3xl mx-auto"
             variants={item}
           >
             Download or view my complete CV
@@ -53,7 +53,7 @@ const CV = () => {
         </motion.div>
 
         <motion.div 
-          className="bg-gray-800 rounded-xl p-6 shadow-2xl max-w-4xl mx-auto"
+          className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg dark:shadow-2xl max-w-4xl mx-auto border border-gray-200 dark:border-gray-700"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -70,9 +70,9 @@ const CV = () => {
           <div className="mt-6 flex justify-center">
             <button
               onClick={handleDownload}
-              className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center group"
+              className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium rounded-full hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 flex items-center group hover:shadow-lg hover:shadow-indigo-500/20"
             >
-              <FiDownload className="mr-2 group-hover:animate-bounce" />
+              <FiDownload className="mr-2 group-hover:animate-bounce text-white" />
               Download CV
             </button>
           </div>

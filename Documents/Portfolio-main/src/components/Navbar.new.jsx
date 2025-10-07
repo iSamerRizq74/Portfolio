@@ -180,15 +180,16 @@ const Navbar = ({ onWhatsAppClick, darkMode, toggleDarkMode }) => {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-12">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 flex items-center">
               <a
                 href="#home"
                 onClick={() => setActiveSection("home")}
                 aria-label="Home"
+                className="flex items-center"
               >
-                <div className="h-12 w-12 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition-all duration-300 transform hover:scale-110">
+                <div className="h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden border-2 border-transparent hover:border-blue-500 transition-all duration-300 transform hover:scale-110">
                   <img
                     src="/SBR1.png"
                     alt="Logo"
@@ -236,19 +237,6 @@ const Navbar = ({ onWhatsAppClick, darkMode, toggleDarkMode }) => {
                 ))}
               </div>
 
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 text-gray-400 hover:text-white rounded-full hover:bg-gray-700 transition-colors"
-                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {darkMode ? (
-                  <FiSun className="w-5 h-5" />
-                ) : (
-                  <FiMoon className="w-5 h-5" />
-                )}
-              </button>
-
               {/* Resume Button */}
               <a
                 href="#"
@@ -260,29 +248,106 @@ const Navbar = ({ onWhatsAppClick, darkMode, toggleDarkMode }) => {
               </a>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="flex md:hidden items-center">
+            {/* Mobile menu button and theme toggle */}
+            <div className="flex items-center space-x-1">
+              {/* Theme Toggle - Always visible */}
               <button
-                className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
-                onClick={() => {
-                  setIsMobileMenuOpen(!isMobileMenuOpen);
-                  setIsMobileDropdownOpen(false);
-                }}
-                aria-expanded={isMobileMenuOpen}
-                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                onClick={toggleDarkMode}
+                className="p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none flex items-center justify-center"
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
-                {isMobileMenuOpen ? (
-                  <FiX className="w-6 h-6" />
+                {darkMode ? (
+                  <FiSun className="h-5 w-5" />
                 ) : (
-                  <FiMenu className="w-6 h-6" />
+                  <FiMoon className="h-5 w-5" />
                 )}
               </button>
+
+              {/* Mobile menu button - Only visible on mobile */}
+              <div className="md:hidden">
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+                  aria-expanded="false"
+                >
+                  <span className="sr-only">Open main menu</span>
+                  {isMobileMenuOpen ? (
+                    <FiX className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <FiMenu className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Mobile menu */}
-        <AnimatePresence>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="md:hidden bg-gray-800/95 backdrop-blur-md shadow-lg border-t border-gray-700/50"
+            variants={mobileMenuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            ref={mobileMenuRef}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navItems.map((item) => (
+                <div key={item.href} className="px-2 py-1">
+                  {renderNavItem(item)}
+                </div>
+              ))}
+
+              {/* Social Links and Resume */}
+              <div className="pt-2 border-t border-gray-700/50 mt-2">
+                <div className="flex justify-center space-x-4 py-4">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        if (social.onClick) {
+                          e.preventDefault();
+                          social.onClick(e);
+                        }
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`p-2 rounded-full text-gray-400 hover:text-white transition-colors ${social.className}`}
+                      aria-label={social.label}
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
+                </div>
+
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleResumeDownload(e);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-medium rounded-md hover:from-blue-700 hover:to-purple-700 transition-colors"
+                >
+                  <FiDownload className="mr-2" />
+                  Download Resume
+                </a>
+              </div>
+
+              {/* Theme Toggle - Removed from mobile menu as it's now in the navbar */}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  </>
+);
+
           {isMobileMenuOpen && (
             <motion.div
               className="md:hidden bg-gray-800/95 backdrop-blur-md shadow-lg border-t border-gray-700/50"

@@ -95,12 +95,12 @@ const Hero = () => {
             </span>
           </motion.div>
 
-          {/* Name - Optimized for mobile */}
+          {/* Name */}
           <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-center"
             variants={item}
           >
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-500 dark:to-pink-500 bg-clip-text text-transparent">
               Samer Baher Rizk
             </span>
           </motion.h1>
@@ -111,7 +111,7 @@ const Hero = () => {
             className="mb-4 sm:mb-6"
           >
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 dark:from-blue-300 dark:to-purple-400">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-400">
                 Full Stack Developer
               </span>
             </h2>
@@ -124,7 +124,7 @@ const Hero = () => {
           >
             <div className="w-full">
               <p className="text-justify">
-                <span className="block max-w-[98%] mx-auto">
+                <span className="block max-w-[98%] mx-auto text-gray-800 dark:text-gray-300">
                   Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. A Computer Science graduate from Mansoura University, I'm driven by continuous learning, Highly detail-oriented and self-motivated who thrives on challenges, values clean and efficient code, with a strong focus on building impactful web applications.
                 </span>
               </p>
@@ -138,25 +138,34 @@ const Hero = () => {
           >
             <a
               href="#contact"
-              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/30 text-sm sm:text-base"
+              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 text-sm sm:text-base"
               aria-label="Get in touch"
             >
-              <span className="relative z-10 flex items-center justify-center">
-                Get In Touch
-                <FiArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              <span className="relative z-10 flex items-center justify-center w-full">
+                <span className="relative">
+                  Get In Touch
+                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </span>
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
 
             <a
               href="#work"
-              className="inline-flex items-center px-8 py-4 text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-full transition-colors duration-200 group"
+              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/30 text-sm sm:text-base"
               aria-label="View my work"
             >
-              View My Work
-              <span className="ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                ↗
+              <span className="relative z-10 flex items-center justify-center w-full">
+                <span className="relative">
+                  View My Work
+                  <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    ↗
+                  </span>
+                </span>
               </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-slate-800 to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </motion.div>
         </motion.div>
