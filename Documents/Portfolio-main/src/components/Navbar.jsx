@@ -309,6 +309,64 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
 
             {/* Mobile controls */}
             <div className="flex items-center space-x-2 md:hidden">
+              {/* Language Selector */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
+                  aria-label="Select language"
+                >
+                  <FiGlobe className="w-5 h-5" />
+                </button>
+                <AnimatePresence>
+                  {isLanguageMenuOpen && (
+                    <motion.div
+                      className="absolute right-0 mt-2 bg-gray-700/95 backdrop-blur-md rounded-lg shadow-lg p-2 z-50 border border-gray-600/30 min-w-[100px] text-center"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="flex flex-col space-y-1">
+                        <button 
+                          onClick={() => {
+                            if (currentLanguage !== 'EN') {
+                              toggleLanguage('EN');
+                            }
+                            setIsLanguageMenuOpen(false);
+                          }}
+                          className={`px-3 py-1 text-sm ${currentLanguage === 'EN' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                        >
+                          English
+                        </button>
+                        <button 
+                          onClick={() => {
+                            if (currentLanguage !== 'FR') {
+                              toggleLanguage('FR');
+                            }
+                            setIsLanguageMenuOpen(false);
+                          }}
+                          className={`px-3 py-1 text-sm ${currentLanguage === 'FR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                        >
+                          Français
+                        </button>
+                        <button 
+                          onClick={() => {
+                            if (currentLanguage !== 'AR') {
+                              toggleLanguage('AR');
+                            }
+                            setIsLanguageMenuOpen(false);
+                          }}
+                          className={`px-3 py-1 text-sm ${currentLanguage === 'AR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                        >
+                          العربية
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+                
               {/* Theme Toggle */}
               <button
                 onClick={toggleDarkMode}
@@ -321,7 +379,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                   <FiSun className="w-5 h-5" />
                 )}
               </button>
-              
+                
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
