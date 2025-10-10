@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX, FiSun, FiMoon, FiDownload, FiChevronDown } from "react-icons/fi";
+import { FiMenu, FiX, FiSun, FiMoon, FiDownload, FiChevronDown, FiGlobe } from "react-icons/fi";
 import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 // Custom 9-dot grid icon
@@ -23,12 +23,14 @@ const NineDotsIcon = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-const Navbar = ({ darkMode, toggleDarkMode }) => {
+const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSocialMenuOpen, setIsSocialMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
   const socialMenuRef = useRef(null);
+  const languageMenuRef = useRef(null);
 
   // Handle scroll
   useEffect(() => {
@@ -50,12 +52,34 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Language is now managed by the parent App component
+
   // Navigation items
   const navItems = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Work", href: "#work" },
-    { name: "Contact", href: "#contact" },
+    { 
+      name: currentLanguage === 'FR' ? 'À propos' : 'About', 
+      href: "#about", 
+      isHighlighted: false, 
+      isDarkBg: true 
+    },
+    { 
+      name: currentLanguage === 'FR' ? 'Compétences' : 'Skills', 
+      href: "#skills", 
+      isHighlighted: true, 
+      isDarkBg: false 
+    },
+    { 
+      name: currentLanguage === 'FR' ? 'Projets' : 'Work', 
+      href: "#work", 
+      isHighlighted: false, 
+      isDarkBg: true 
+    },
+    { 
+      name: 'Contact', 
+      href: "#contact", 
+      isHighlighted: true, 
+      isDarkBg: false 
+    },
   ];
 
   // Handle resume download
@@ -114,6 +138,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       if (socialMenuRef.current && !socialMenuRef.current.contains(event.target)) {
         setIsSocialMenuOpen(false);
       }
+      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target)) {
+        setIsLanguageMenuOpen(false);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -160,19 +187,68 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             </nav>
 
             {/* Desktop Social and Theme */}
-            <div className="hidden md:flex items-center space-x-2">
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 -mr-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
-                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {darkMode ? (
-                  <FiMoon className="w-5 h-5 text-gray-200" />
-                ) : (
-                  <FiSun className="w-5 h-5 text-white" />
-                )}
-              </button>
+            <div className="hidden md:flex items-center space-x-0">
+              <div className="flex items-center space-x-0">
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleDarkMode}
+                  className="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
+                  aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                >
+                  {darkMode ? (
+                    <FiMoon className="w-5 h-5 text-gray-200" />
+                  ) : (
+                    <FiSun className="w-5 h-5 text-white" />
+                  )}
+                </button>
+
+                {/* Language Selector */}
+                <div className="relative" ref={languageMenuRef}>
+                  <button
+                    onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                    className="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
+                    aria-label="Select language"
+                  >
+                    <FiGlobe className="w-5 h-5 text-gray-200" />
+                  </button>
+                  <AnimatePresence>
+                    {isLanguageMenuOpen && (
+                      <motion.div
+                        className="absolute right-0 mt-2 bg-gray-700/95 backdrop-blur-md rounded-lg shadow-lg p-2 z-50 border border-gray-600/30 min-w-[100px] text-center"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="flex flex-col space-y-1">
+                          <button 
+                            onClick={() => {
+                              if (currentLanguage !== 'EN') {
+                                toggleLanguage();
+                              }
+                              setIsLanguageMenuOpen(false);
+                            }}
+                            className={`px-3 py-1 text-sm ${currentLanguage === 'EN' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                          >
+                            English
+                          </button>
+                          <button 
+                            onClick={() => {
+                              if (currentLanguage !== 'FR') {
+                                toggleLanguage();
+                              }
+                              setIsLanguageMenuOpen(false);
+                            }}
+                            className={`px-3 py-1 text-sm ${currentLanguage === 'FR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                          >
+                            Français
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
               
               <div className="relative group" ref={socialMenuRef}>
                 <button 
@@ -216,12 +292,26 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors flex items-center"
               >
                 <FiDownload className="mr-2" />
-                Resume
+                {currentLanguage === 'FR' ? 'CV' : 'Resume'}
               </button>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="md:hidden">
+            {/* Mobile controls */}
+            <div className="flex items-center space-x-2 md:hidden">
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {darkMode ? (
+                  <FiMoon className="w-5 h-5" />
+                ) : (
+                  <FiSun className="w-5 h-5" />
+                )}
+              </button>
+              
+              {/* Mobile menu button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
@@ -245,54 +335,41 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             variants={mobileMenuVariants}
             ref={mobileMenuRef}
           >
-            <div className="px-4 py-3 space-y-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
+            <div className="px-4 py-3">
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+                {navItems.map((item) => (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`px-3 py-2 text-base font-medium text-white rounded-md transition-colors whitespace-nowrap ${item.isDarkBg ? 'bg-gray-700/60 hover:bg-gray-700/80' : 'bg-gray-600/40 hover:bg-gray-600/60'}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
               
               <div className="pt-4 border-t border-gray-700/50 mt-2">
                 <div className="flex justify-center space-x-4 py-3">
                   {socialLinks.map((social, index) => (
-                    <a
+                    <button
                       key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        if (social.onClick) {
+                          social.onClick(e);
+                        } else {
+                          window.open(social.href, '_blank', 'noopener,noreferrer');
+                        }
+                      }}
                       className="p-2 text-gray-400 hover:text-white transition-colors"
                       aria-label={social.label}
                     >
                       {social.icon}
-                    </a>
+                    </button>
                   ))}
                 </div>
 
                 <div className="flex flex-col space-y-3 mt-3">
-                  <button
-                    onClick={() => {
-                      toggleDarkMode();
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="w-full flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors"
-                  >
-                    {darkMode ? (
-                      <>
-                        <FiSun className="w-5 h-5 mr-2" />
-                        Light Mode
-                      </>
-                    ) : (
-                      <>
-                        <FiMoon className="w-5 h-5 mr-2" />
-                        Dark Mode
-                      </>
-                    )}
-                  </button>
 
                   <button
                     onClick={(e) => {
@@ -301,8 +378,8 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                     }}
                     className="w-full flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
                   >
-                    <FiDownload className="mr-2" />
-                    Download Resume
+                    <FiDownload className="mr-1" />
+                    {currentLanguage === 'FR' ? 'CV' : 'Resume'}
                   </button>
                 </div>
               </div>

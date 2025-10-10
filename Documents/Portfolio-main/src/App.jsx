@@ -9,6 +9,7 @@ import Skills from './components/Skills';
 import Work from './components/Work';
 import Contact from './components/Contact';
 import SideNavigation from './components/SideNavigation';
+import ScrollButtons from './components/ScrollButtons';
 
 console.log('App: Component initialized');
 
@@ -18,6 +19,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('EN');
+
+  // Toggle language between EN and FR
+  const toggleLanguage = useCallback(() => {
+    setCurrentLanguage(prev => prev === 'EN' ? 'FR' : 'EN');
+  }, []);
 
   // Debug: Show current theme status
   useEffect(() => {
@@ -175,6 +182,8 @@ function App() {
         darkMode={darkMode}
         toggleDarkMode={toggleDarkMode}
         onWhatsAppClick={handleWhatsAppClick}
+        currentLanguage={currentLanguage}
+        toggleLanguage={toggleLanguage}
       />
 
       {/* WhatsApp Modal */}
@@ -245,18 +254,21 @@ function App() {
       </AnimatePresence>
 
       <SideNavigation />
+      <ScrollButtons />
       <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Work />
-        <Contact />
+        <Hero currentLanguage={currentLanguage} />
+        <About currentLanguage={currentLanguage} />
+        <Skills currentLanguage={currentLanguage} />
+        <Work currentLanguage={currentLanguage} />
+        <Contact currentLanguage={currentLanguage} />
       </main>
 
       <footer className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-lg"> {new Date().getFullYear()} Samer Baher Rizk.</p>
-          <p className="text-gray-200 dark:text-gray-400 mb-6">All rights reserved.</p>
+          <p className="text-lg">© {new Date().getFullYear()} Samer Baher Rizk.</p>
+          <p className="text-gray-200 dark:text-gray-400 mb-6">
+            {currentLanguage === 'FR' ? 'Tous droits réservés.' : 'All rights reserved.'}
+          </p>
           <div className="flex justify-center space-x-6">
             <a
               href="https://github.com/isamerrizq74"

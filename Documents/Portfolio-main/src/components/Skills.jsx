@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { BsGear } from "react-icons/bs";
 import { BiCodeAlt, BiServer, BiData } from "react-icons/bi";
 
-const Skills = () => {
+const Skills = ({ currentLanguage = 'EN' }) => {
   const skills = [
     {
-      title: "Frontend Development",
+      title: currentLanguage === 'FR' ? "Développement Frontend" : "Frontend Development",
       icon: <BiCodeAlt className="w-8 h-8 text-blue-400" />,
       items: [
         { name: "HTML5", icon: <FaHtml5 className="w-5 h-5 text-orange-500" /> },
@@ -22,7 +22,7 @@ const Skills = () => {
       ],
     },
     {
-      title: "Backend Development",
+      title: currentLanguage === 'FR' ? "Développement Backend" : "Backend Development",
       icon: <BiServer className="w-8 h-8 text-green-500" />,
       items: [
         { name: "Python", icon: <FaPython className="w-5 h-5 text-yellow-400" /> },
@@ -36,7 +36,7 @@ const Skills = () => {
       ],
     },
     {
-      title: "Database & Tools",
+      title: currentLanguage === 'FR' ? "Bases de données & Outils" : "Database & Tools",
       icon: <BiData className="w-8 h-8 text-yellow-400" />,
       items: [
         { name: "MySQL", icon: <SiMysql className="w-5 h-5 text-blue-600" /> },
@@ -55,21 +55,17 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-[#CCCCCC] dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-3">
-            My <span className="text-blue-500 dark:text-blue-400">Skills</span>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            {currentLanguage === 'FR' ? 'Compétences' : 'Skills'}
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            A blend of technical skills and modern tools i use to deliver results.
+          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4" />
+          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {currentLanguage === 'FR' 
+              ? "Les technologies et outils que j'utilise pour créer des applications web modernes et performantes."
+              : "Technologies and tools I use to create modern and performant web applications."}
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {skills.map((category, index) => (

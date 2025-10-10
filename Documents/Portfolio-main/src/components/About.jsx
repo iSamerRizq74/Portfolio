@@ -3,7 +3,7 @@ import { FaFilePdf } from 'react-icons/fa';
 import { FiEye, FiDownload } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
 
-const About = () => {
+const About = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
   const [showCV, setShowCV] = useState(false);
 
@@ -79,7 +79,8 @@ const About = () => {
             variants={prefersReducedMotion ? undefined : item}
           >
             <h2 className="text-3xl xs:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">
-              About <span className="text-blue-500 dark:text-blue-400">Me</span>
+              {currentLanguage === 'FR' ? 'À propos de ' : 'About '}
+              <span className="text-blue-500 dark:text-blue-400">{currentLanguage === 'FR' ? 'moi' : 'Me'}</span>
             </h2>
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4" />
           </motion.div>
@@ -90,17 +91,23 @@ const About = () => {
               variants={prefersReducedMotion ? undefined : item}
             >
               <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-3">
-                Who Am I?
+                {currentLanguage === 'FR' ? 'Qui suis-je ?' : 'Who Am I?'}
               </h3>
               <div className="space-y-8 text-gray-700 dark:text-gray-300 leading-relaxed text-lg text-justify px-2">
                 <p className="max-w-2xl mx-auto">
-                  I’m a passionate Full Stack Developer with strong expertise in both frontend and backend development. I’m dedicated to building creative and reliable solutions that make an impact. I enjoy turning complex ideas into modern, scalable, and responsive web applications. My focus is on writing clean and efficient code that delivers high-performance and meaningful digital experiences for users.
+                  {currentLanguage === 'FR'
+                    ? "Je suis un Développeur Full Stack passionné, fort d'une expertise solide en développement frontend et backend. Je me consacre à la création de solutions créatives et fiables qui ont un impact. J'aime transformer des idées complexes en applications web modernes, évolutives et responsives. Mon objectif est d'écrire un code propre et efficace qui offre des performances optimales et des expériences digitales significatives aux utilisateurs."
+                    : "I am a passionate Full Stack Developer with strong expertise in both frontend and backend development. I am dedicated to creating creative and reliable solutions that make an impact. I enjoy transforming complex ideas into modern, scalable, and responsive web applications. My goal is to write clean and efficient code that delivers optimal performance and meaningful digital experiences to users."}
                 </p>
                 <p className="max-w-2xl mx-auto">
-                  My journey in web development began several years ago, during which I’ve worked on a wide range of projects from small business websites to web platforms. I’ve contributed to full stack development, designing intuitive interfaces and building secure, high-performance APIs. I’m dedicated to writing clean code and continuously improving my skills through collaboration and problem-solving.
+                  {currentLanguage === 'FR'
+                    ? "Mon parcours dans le développement web a commencé il y a plusieurs années, durant lesquels j'ai travaillé sur une large gamme de projets, allant des sites vitrines pour petites entreprises aux plateformes web. J'ai contribué au développement full stack, en concevant des interfaces intuitives et en construisant des API sécurisées et performantes. Je suis dévoué à l'écriture d'un code propre et à l'amélioration continue de mes compétences grâce à la collaboration et à la résolution de problèmes."
+                    : "My journey in web development began several years ago, during which I've worked on a wide range of projects, from small business websites to web platforms. I've contributed to full-stack development, designing intuitive interfaces and building secure, high-performance APIs. I am committed to writing clean code and continuously improving my skills through collaboration and problem-solving."}
                 </p>
                 <p className="max-w-2xl mx-auto">
-                  When I’m not coding, I enjoy exploring emerging technologies, contributing to open-source projects, and sharing knowledge within the developer community. These experiences help me stay up-to-date, collaborate effectively, and continuously refine my technical skills. I’m always eager to take on new challenges and build innovative, user-focused, and meaningful products that make an impact.
+                  {currentLanguage === 'FR'
+                    ? "Lorsque je ne code pas, j'aime explorer les technologies émergentes, contribuer à des projets open-source et partager mes connaissances au sein de la communauté des développeurs. Ces expériences m'aident à me tenir à jour, à collaborer efficacement et à affiner continuellement mes compétences techniques. Je suis toujours impatient de relever de nouveaux défis et de construire des produits innovants, centrés sur l'utilisateur et porteurs de sens."
+                    : "When I'm not coding, I enjoy exploring emerging technologies, contributing to open-source projects, and sharing knowledge within the developer community. These experiences help me stay current, collaborate effectively, and continuously refine my technical skills. I'm always eager to take on new challenges and build innovative, user-centered products that make a meaningful impact."}
                 </p>
               </div>
             </motion.div>
@@ -119,9 +126,13 @@ const About = () => {
                 <div className="w-16 h-16 bg-blue-100 dark:bg-blue-500/10 rounded-full flex items-center justify-center mb-5">
                   <FaFilePdf className="w-8 h-8 text-blue-600 dark:text-blue-400" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">CV</h3>
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                  CV
+                </h3>
                 <p className="text-gray-700 dark:text-gray-400 mb-8 max-w-lg">
-                  Explore my professional journey, skills, and experience in detail.
+                  {currentLanguage === 'FR'
+                    ? 'Découvrez mon parcours professionnel, mes compétences et mon expérience en détail.'
+                    : 'Discover my professional journey, skills, and experience in detail.'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs">
                   <button
@@ -129,7 +140,7 @@ const About = () => {
                     className="group flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
                   >
                     <FiEye className="mr-2 group-hover:scale-110 transition-transform" />
-                    View
+                    {currentLanguage === 'FR' ? 'Voir' : 'View'}
                   </button>
                   <a
                     href="/SamerCV.pdf"
@@ -137,7 +148,7 @@ const About = () => {
                     className="group flex-1 flex items-center justify-center px-6 py-3 bg-transparent border border-gray-300 hover:border-blue-500 text-gray-800 hover:text-blue-600 dark:border-gray-600 dark:text-gray-300 dark:hover:text-blue-400 font-medium rounded-lg transition-all duration-300"
                   >
                     <FiDownload className="mr-2 group-hover:scale-110 transition-transform" />
-                    Download
+                    {currentLanguage === 'FR' ? 'Télécharger' : 'Download'}
                   </a>
                 </div>
               </div>

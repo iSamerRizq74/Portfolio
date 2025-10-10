@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiGithub, FiLinkedin, FiInstagram, FiFacebook } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const Contact = () => {
+const Contact = ({ currentLanguage = 'EN' }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,7 +33,7 @@ const Contact = () => {
     },
     {
       icon: FiPhone,
-      label: 'Phone',
+      label: currentLanguage === 'FR' ? 'Téléphone' : 'Phone',
       value: '01065290660',
       color: 'from-purple-600 to-purple-700',
       labelColor: 'text-purple-600 dark:text-purple-400',
@@ -41,8 +41,8 @@ const Contact = () => {
     },
     {
       icon: FiMapPin,
-      label: 'Location',
-      value: 'Cairo, Egypt',
+      label: currentLanguage === 'FR' ? 'Localisation' : 'Location',
+      value: currentLanguage === 'FR' ? 'Le Caire, Égypte' : 'Cairo, Egypt',
       color: 'from-green-600 to-green-700',
       labelColor: 'text-green-600 dark:text-green-400',
       valueColor: 'text-gray-600 dark:text-gray-300'
@@ -165,7 +165,10 @@ const Contact = () => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-3xl xs:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3"
                 >
-                  Get In <span className="text-blue-500 dark:text-blue-400">Touch</span>
+                  {currentLanguage === 'FR' ? 'Me ' : 'Get In '}
+                  <span className="text-blue-500 dark:text-blue-400">
+                    {currentLanguage === 'FR' ? 'Contacter' : 'Touch'}
+                  </span>
                 </motion.h2>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-3 sm:mb-4" />
                 <motion.p
@@ -174,7 +177,9 @@ const Contact = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg"
                 >
-                  Have a project or potential opportunities in mind? Feel free to reach out!
+                  {currentLanguage === 'FR' 
+                    ? 'Vous avez un projet ou des opportunités potentielles en tête? N\'hésitez pas à me contacter!'
+                    : 'Have a project or potential opportunities in mind? Feel free to reach out!'}
                 </motion.p>
               </div>
 
@@ -188,9 +193,11 @@ const Contact = () => {
                     <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mb-4">
                       <FiCheckCircle className="text-3xl text-green-500" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Message Sent!</h3>
+                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                      {currentLanguage === 'FR' ? 'Message Envoyé!' : 'Message Sent!'}
+                    </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      Thank you for reaching out. I'll get back to you as soon as possible.
+                      {currentLanguage === 'FR' ? 'Merci pour votre message. Je vous répondrai dès que possible.' : 'Thank you for your message. I will get back to you as soon as possible.'}
                     </p>
                   </div>
                 </motion.div>
@@ -205,7 +212,7 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block text-sm font-medium text-black dark:text-gray-300">
-                        Name <span className="text-red-500">*</span>
+                        {currentLanguage === 'FR' ? 'Nom' : 'Name'} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -221,7 +228,7 @@ const Contact = () => {
 
                     <div className="space-y-2">
                       <label htmlFor="email" className="block text-sm font-medium text-black dark:text-gray-300">
-                        Email <span className="text-red-400">*</span>
+                        {currentLanguage === 'FR' ? 'Email' : 'Email'} <span className="text-red-400">*</span>
                       </label>
                       <input
                         type="email"
@@ -238,7 +245,7 @@ const Contact = () => {
 
                   <div className="space-y-2">
                     <label htmlFor="message" className="block text-sm font-medium text-black dark:text-gray-300">
-                      Message <span className="text-red-500">*</span>
+                      {currentLanguage === 'FR' ? 'Message' : 'Message'} <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -263,10 +270,10 @@ const Contact = () => {
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         {isSubmitting ? (
-                          'Sending...'
+                          <>{currentLanguage === 'FR' ? 'Envoi en cours...' : 'Sending...'}</>
                         ) : (
                           <>
-                            <span>Send Message</span>
+                            <span>{currentLanguage === 'FR' ? 'Envoyer le message' : 'Send Message'}</span>
                             <FiSend className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                           </>
                         )}
@@ -280,7 +287,9 @@ const Contact = () => {
             {/* Contact Information */}
             <motion.div variants={itemVariants} className="space-y-8">
               <div className="pt-12 mt-8">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">Contact Information</h3>
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+                  {currentLanguage === 'FR' ? 'Coordonnées' : 'Contact Information'}
+                </h3>
 
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (

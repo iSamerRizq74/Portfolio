@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 
-const Hero = () => {
+const Hero = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
 
   const container = {
@@ -112,7 +112,7 @@ const Hero = () => {
           >
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-400">
-                Full Stack Developer
+                {currentLanguage === 'FR' ? 'Développeur Full Stack' : 'Full Stack Developer'}
               </span>
             </h2>
           </motion.div>
@@ -125,7 +125,9 @@ const Hero = () => {
             <div className="w-full">
               <p className="text-justify">
                 <span className="block max-w-[98%] mx-auto text-gray-800 dark:text-gray-300">
-                  Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. A Computer Science graduate from Mansoura University, I'm driven by continuous learning, Highly detail-oriented and self-motivated who thrives on challenges, values clean and efficient code, with a strong focus on building impactful web applications.
+                  {currentLanguage === 'FR' 
+                    ? "Développeur Full Stack passionné et diplômé de l'ITI avec une expérience pratique sur des projets réels. Compétent en développement front-end et back-end, fournissant des solutions évolutives et fiables. Diplômé en informatique de l'Université de Mansoura, je suis motivé par l'apprentissage continu, extrêmement méticuleux et autonome, je prospère face aux défis, valorise un code propre et efficace, avec un accent marqué sur la création d'applications web percutantes."
+                    : "Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. A Computer Science graduate from Mansoura University, I'm driven by continuous learning, extremely meticulous, and self-motivated. I thrive on challenges, value clean and efficient code, with a strong focus on creating impactful web applications."}
                 </span>
               </p>
             </div>
@@ -134,16 +136,16 @@ const Hero = () => {
           {/* CTA Buttons - Stack on mobile, row on larger screens */}
           <motion.div
             variants={prefersReducedMotion ? undefined : item}
-            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-4 sm:mb-6"
+            className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6 w-full"
           >
             <a
               href="#contact"
-              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 text-sm sm:text-base"
+              className="group relative px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 text-sm sm:text-base w-auto min-w-[180px] sm:w-auto"
               aria-label="Get in touch"
             >
               <span className="relative z-10 flex items-center justify-center w-full">
                 <span className="relative">
-                  Get In Touch
+                  {currentLanguage === 'FR' ? 'Me Contacter' : 'Get In Touch'}
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                     <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
@@ -154,12 +156,12 @@ const Hero = () => {
 
             <a
               href="#work"
-              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/30 text-sm sm:text-base"
+              className="group relative px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/30 text-sm sm:text-base w-auto min-w-[180px] sm:w-auto"
               aria-label="View my work"
             >
               <span className="relative z-10 flex items-center justify-center w-full">
                 <span className="relative">
-                  View My Work
+                  {currentLanguage === 'FR' ? 'Voir Mes Projets' : 'View My Work'}
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                     ↗
                   </span>
