@@ -373,18 +373,27 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 </AnimatePresence>
               </div>
                 
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
-                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {darkMode ? (
-                  <FiMoon className="w-5 h-5" />
-                ) : (
-                  <FiSun className="w-5 h-5" />
-                )}
-              </button>
+              {/* Theme Toggle and Language Selector */}
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={toggleDarkMode}
+                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
+                  aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                >
+                  {darkMode ? (
+                    <FiMoon className="w-5 h-5" />
+                  ) : (
+                    <FiSun className="w-5 h-5" />
+                  )}
+                </button>
+                <button
+                  onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
+                  aria-label="Select language"
+                >
+                  <FiGlobe className="w-5 h-5" />
+                </button>
+              </div>
                 
               {/* Mobile menu button */}
               <button
