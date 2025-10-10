@@ -307,86 +307,55 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
               </button>
             </div>
 
-            {/* Mobile controls */}
-            <div className="flex items-center space-x-2 md:hidden relative z-[9999]">
-              {/* Theme Toggle and Language Selector */}
-              <div className="flex items-center space-x-1">
+            {/* Mobile controls - Simplified */}
+            <div className="flex items-center space-x-2 md:hidden">
+              {/* Theme Toggle */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {darkMode ? (
+                  <FiMoon className="w-5 h-5" />
+                ) : (
+                  <FiSun className="w-5 h-5" />
+                )}
+              </button>
+
+              {/* Language Toggle */}
+              <div className="relative">
                 <button
-                  onClick={toggleDarkMode}
+                  onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
                   className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
-                  aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                  aria-label="Select language"
                 >
-                  {darkMode ? (
-                    <FiMoon className="w-5 h-5" />
-                  ) : (
-                    <FiSun className="w-5 h-5" />
-                  )}
+                  <FiGlobe className="w-5 h-5" />
                 </button>
-                <div className="relative">
-                  <button
-                    onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-                    className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
-                    aria-label="Select language"
-                  >
-                    <FiGlobe className="w-5 h-5" />
-                  </button>
-                  <AnimatePresence>
-                    {isLanguageMenuOpen && (
-                      <motion.div
-                        className="absolute right-0 mt-2 bg-gray-700/95 backdrop-blur-md rounded-lg shadow-lg p-2 z-50 border border-gray-600/30 min-w-[100px] text-center"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="flex flex-col space-y-1">
-                          <button 
-                            onClick={() => {
-                              if (currentLanguage !== 'EN') toggleLanguage('EN');
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className={`px-3 py-1 text-sm ${
-                              currentLanguage === 'EN' 
-                                ? 'text-blue-400 font-medium' 
-                                : 'text-gray-200 hover:text-white'
-                            } hover:bg-gray-600/30 rounded w-full text-left`}
-                          >
-                            English
-                          </button>
-                          <button 
-                            onClick={() => {
-                              if (currentLanguage !== 'FR') toggleLanguage('FR');
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className={`px-3 py-1 text-sm ${
-                              currentLanguage === 'FR' 
-                                ? 'text-blue-400 font-medium' 
-                                : 'text-gray-200 hover:text-white'
-                            } hover:bg-gray-600/30 rounded w-full text-left`}
-                          >
-                            Français
-                          </button>
-                          <button 
-                            onClick={() => {
-                              if (currentLanguage !== 'AR') toggleLanguage('AR');
-                              setIsLanguageMenuOpen(false);
-                            }}
-                            className={`px-3 py-1 text-sm ${
-                              currentLanguage === 'AR' 
-                                ? 'text-blue-400 font-medium' 
-                                : 'text-gray-200 hover:text-white'
-                            } hover:bg-gray-600/30 rounded w-full text-right`}
-                          >
-                            العربية
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                {isLanguageMenuOpen && (
+                  <div className="absolute right-0 mt-2 bg-gray-700/95 backdrop-blur-md rounded-lg shadow-lg p-2 z-50 border border-gray-600/30 min-w-[100px]">
+                    <button 
+                      onClick={() => { toggleLanguage('EN'); setIsLanguageMenuOpen(false); }}
+                      className={`w-full px-3 py-1 text-sm text-left rounded ${currentLanguage === 'EN' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white hover:bg-gray-600/30'}`}
+                    >
+                      English
+                    </button>
+                    <button 
+                      onClick={() => { toggleLanguage('FR'); setIsLanguageMenuOpen(false); }}
+                      className={`w-full px-3 py-1 text-sm text-left rounded ${currentLanguage === 'FR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white hover:bg-gray-600/30'}`}
+                    >
+                      Français
+                    </button>
+                    <button 
+                      onClick={() => { toggleLanguage('AR'); setIsLanguageMenuOpen(false); }}
+                      className={`w-full px-3 py-1 text-sm text-right rounded ${currentLanguage === 'AR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white hover:bg-gray-600/30'}`}
+                    >
+                      العربية
+                    </button>
+                  </div>
+                )}
               </div>
-                
-              {/* Mobile menu button */}
+
+              {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
