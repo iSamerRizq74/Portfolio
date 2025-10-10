@@ -310,10 +310,10 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
             {/* Mobile controls */}
             <div className="flex items-center space-x-2 md:hidden">
               {/* Language Selector */}
-              <div className="relative z-50">
+              <div className="relative">
                 <button
                   onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors z-50 relative"
+                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
                   aria-label="Select language"
                 >
                   <FiGlobe className="w-5 h-5" />
@@ -330,34 +330,40 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                       <div className="flex flex-col space-y-1">
                         <button 
                           onClick={() => {
-                            if (currentLanguage !== 'EN') {
-                              toggleLanguage('EN');
-                            }
+                            if (currentLanguage !== 'EN') toggleLanguage('EN');
                             setIsLanguageMenuOpen(false);
                           }}
-                          className={`px-3 py-1 text-sm ${currentLanguage === 'EN' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                          className={`px-3 py-1 text-sm ${
+                            currentLanguage === 'EN' 
+                              ? 'text-blue-400 font-medium' 
+                              : 'text-gray-200 hover:text-white'
+                          } hover:bg-gray-600/30 rounded w-full text-left`}
                         >
                           English
                         </button>
                         <button 
                           onClick={() => {
-                            if (currentLanguage !== 'FR') {
-                              toggleLanguage('FR');
-                            }
+                            if (currentLanguage !== 'FR') toggleLanguage('FR');
                             setIsLanguageMenuOpen(false);
                           }}
-                          className={`px-3 py-1 text-sm ${currentLanguage === 'FR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                          className={`px-3 py-1 text-sm ${
+                            currentLanguage === 'FR' 
+                              ? 'text-blue-400 font-medium' 
+                              : 'text-gray-200 hover:text-white'
+                          } hover:bg-gray-600/30 rounded w-full text-left`}
                         >
                           Français
                         </button>
                         <button 
                           onClick={() => {
-                            if (currentLanguage !== 'AR') {
-                              toggleLanguage('AR');
-                            }
+                            if (currentLanguage !== 'AR') toggleLanguage('AR');
                             setIsLanguageMenuOpen(false);
                           }}
-                          className={`px-3 py-1 text-sm ${currentLanguage === 'AR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                          className={`px-3 py-1 text-sm ${
+                            currentLanguage === 'AR' 
+                              ? 'text-blue-400 font-medium' 
+                              : 'text-gray-200 hover:text-white'
+                          } hover:bg-gray-600/30 rounded w-full text-right`}
                         >
                           العربية
                         </button>
