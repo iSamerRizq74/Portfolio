@@ -101,7 +101,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             variants={item}
           >
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-500 dark:to-pink-500 bg-clip-text text-transparent">
-              Samer Baher Rizk
+              {currentLanguage === 'AR' ? 'سامر باهر رزق' : 'Samer Baher Rizk'}
             </span>
           </motion.h1>
 
@@ -112,7 +112,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
           >
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-400">
-                {currentLanguage === 'FR' ? 'Développeur Full Stack' : 'Full Stack Developer'}
+                {currentLanguage === 'FR' ? 'Développeur Full Stack' : currentLanguage === 'AR' ? 'مطور ويب متكامل' : 'Full Stack Developer'}
               </span>
             </h2>
           </motion.div>
@@ -127,7 +127,10 @@ const Hero = ({ currentLanguage = 'EN' }) => {
                 <span className="block max-w-[98%] mx-auto text-gray-800 dark:text-gray-300">
                   {currentLanguage === 'FR' 
                     ? "Développeur Full Stack passionné et diplômé de l'ITI avec une expérience pratique sur des projets réels. Compétent en développement front-end et back-end, fournissant des solutions évolutives et fiables. Diplômé en informatique de l'Université de Mansoura, je suis motivé par l'apprentissage continu, extrêmement méticuleux et autonome, je prospère face aux défis, valorise un code propre et efficace, avec un accent marqué sur la création d'applications web percutantes."
-                    : "Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. A Computer Science graduate from Mansoura University, I'm driven by continuous learning, extremely meticulous, and self-motivated. I thrive on challenges, value clean and efficient code, with a strong focus on creating impactful web applications."}
+                    : currentLanguage === 'AR'
+                    ? 'مُطور ويب مُتكامل شغوف وخريج معهد تكنولوجيا المعلومات التابع لوزارة الإتصالات، مع خبرة عملية في المشاريع الحقيقية. مُتمكن في تطوير الواجهات الأمامية والخلفية، وأقدم حلولاً تقنية قابلة للتوسع وموثوقة. خريج كلية الحاسبات والمعلومات من جامعة المنصورة، يدفعني شغف التعلم المستمر، وأتميز بالدقة الشديدة والعمل الذاتي. أزدهر بالتحديات، وأهتم بكتابة كود نظيف وفعّال، مع تركيز قوي على إنشاء تطبيقات ويب ذات تأثير ملموس.'
+                    : "Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. A Computer Science graduate from Mansoura University, I'm driven by continuous learning, extremely meticulous, and self-motivated. I thrive on challenges, value clean and efficient code, with a strong focus on creating impactful web applications."
+                  }
                 </span>
               </p>
             </div>
@@ -145,7 +148,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             >
               <span className="relative z-10 flex items-center justify-center w-full">
                 <span className="relative">
-                  {currentLanguage === 'FR' ? 'Me Contacter' : 'Get In Touch'}
+                  {currentLanguage === 'FR' ? 'Me Contacter' : currentLanguage === 'AR' ? 'تواصل معي' : 'Get In Touch'}
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                     <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
@@ -161,7 +164,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             >
               <span className="relative z-10 flex items-center justify-center w-full">
                 <span className="relative">
-                  {currentLanguage === 'FR' ? 'Voir Mes Projets' : 'View My Work'}
+                  {currentLanguage === 'FR' ? 'Voir Mes Projets' : currentLanguage === 'AR' ? 'مشاريعي' : 'View My Work'}
                   <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                     ↗
                   </span>

@@ -8,7 +8,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'Khadamatk',
       description: {
         EN: 'A comprehensive service marketplace platform connecting service providers with customers in various categories.',
-        FR: 'Une plateforme complète de marketplace de services mettant en relation prestataires et clients dans diverses catégories.'
+        FR: 'Une plateforme complète de marketplace de services mettant en relation prestataires et clients dans diverses catégories.',
+        AR: 'منصة سوق خدمات شاملة تربط مقدمي الخدمات بالعملاء في فئات مختلفة'
       },
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
       github: 'https://github.com/NadraR/khadamatk',
@@ -21,7 +22,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'SmartLesson',
       description: {
         EN: 'A platform for booking personalized language lessons, featuring flexible scheduling and progress tracking.',
-        FR: 'Une plateforme de réservation de cours de langues personnalisés, avec planification flexible et suivi des progrès.'
+        FR: 'Une plateforme de réservation de cours de langues personnalisés, avec planification flexible et suivi des progrès.',
+        AR: 'منصة لحجز دروس لغة مخصصة، تتميز بجدولة مرنة وتتبع التقدم'
       },
       tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
       github: 'https://github.com/rewan24/E-Learning-Lessons-Platform',
@@ -34,7 +36,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'FlIpQuist',
       description: {
         EN: 'An interactive flashcard application for efficient learning and memorization using spaced repetition.',
-        FR: 'Une application interactive de flashcards pour un apprentissage et une mémorisation efficaces utilisant la répétition espacée.'
+        FR: 'Une application interactive de flashcards pour un apprentissage et une mémorisation efficaces utilisant la répétition espacée.',
+        AR: 'تطبيق بطاقات تعليمية تفاعلي للتعلم الفعال والتذكر باستخدام التكرار المتباعد'
       },
       tags: ['React', 'Firebase', 'Redux', 'Material-UI'],
       github: 'https://github.com/iSamerRizq74/FlipQuest',
@@ -47,7 +50,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'SparkFund',
       description: {
         EN: 'A crowdfunding platform for creators to launch projects and for backers to support innovative ideas.',
-        FR: 'Une plateforme de crowdfunding permettant aux créateurs de lancer des projets et aux contributeurs de soutenir des idées innovantes.'
+        FR: 'Une plateforme de crowdfunding permettant aux créateurs de lancer des projets et aux contributeurs de soutenir des idées innovantes.',
+        AR: 'منصة تمويل جماعي للمبدعين لإطلاق المشاريع وللممولين لدعم الأفكار المبتكرة'
       },
       tags: ['React Native', 'GraphQL', 'Node.js', 'MongoDB'],
       github: 'https://github.com/iSamerRizq74/SparkFund',
@@ -60,7 +64,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'MovieNest',
       description: {
         EN: 'A movie discovery platform with personalized recommendations and watchlist functionality, allowing users to explore top movies easily.',
-        FR: "Une plateforme de découverte de films avec recommandations personnalisées et fonctionnalité de liste de surveillance, permettant aux utilisateurs d'explorer facilement les meilleurs films."
+        FR: "Une plateforme de découverte de films avec recommandations personnalisées et fonctionnalité de liste de surveillance, permettant aux utilisateurs d'explorer facilement les meilleurs films.",
+        AR: 'منصة اكتشاف أفلام مع توصيات مخصصة ووظيفة قائمة المشاهدة، مما يسمح للمستخدمين باستكشاف أفضل الأفلام بسهولة'
       },
       tags: ['React', 'TMDB API', 'Redux', 'Firebase'],
       github: 'https://github.com/iSamerRizq74/MovieNest',
@@ -73,7 +78,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'Egyora',
       description: {
         EN: 'A tourism website that helps visitors explore Egypt\'s top attractions, historical sites, and hidden travel gems easily.',
-        FR: "Un site touristique aidant les visiteurs à explorer les principales attractions de l'Égypte, les sites historiques et les joyaux cachés du voyage."
+        FR: "Un site touristique aidant les visiteurs à explorer les principales attractions de l'\u00c9gypte, les sites historiques et les joyaux cach\u00e9s du voyage.",
+        AR: 'موقع سياحي يساعد الزوار على استكشاف أفضل معالم مصر، المواقع التاريخية، والجواهر السياحية المخفية بسهولة'
       },
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
       github: 'https://github.com/iSamerRizq74/Egyora',
@@ -86,7 +92,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'QuickCart',
       description: {
         EN: 'QuickCart is an online store offering rare and unique electronic products with fast delivery and secure shopping.',
-        FR: 'Une boutique en ligne proposant des produits électroniques rares et uniques avec livraison rapide et shopping sécurisé.'
+        FR: 'Une boutique en ligne proposant des produits électroniques rares et uniques avec livraison rapide et shopping sécurisé.',
+        AR: 'متجر إلكتروني يقدم منتجات إلكترونية نادرة وفريدة مع توصيل سريع وتسوق آمن'
       },
       tags: ['React', 'Node.js', 'MongoDB', 'WebSockets'],
       github: 'https://github.com/iSamerRizq74/QuickCart',
@@ -99,7 +106,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'Gericht',
       description: {
         EN: 'Restaurant reservation platform with table management system, delivering delicious flavors and unforgettable dining experiences.',
-        FR: 'Plateforme de réservation de restaurant avec système de gestion des tables. Offre des saveurs délicieuses et des expériences culinaires inoubliables.'
+        FR: 'Plateforme de réservation de restaurant avec système de gestion des tables. Offre des saveurs délicieuses et des expériences culinaires inoubliables.',
+        AR: 'منصة حجز مطاعم مع نظام إدارة الطاولات، تقدم نكهات لذيذة وتجارب طعام لا تُنسى'
       },
       tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
       github: 'https://github.com/iSamerRizq74/Restaurant',
@@ -112,7 +120,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'VivaDecor',
       description: {
         EN: 'Interior design service platform with 3D room visualization and designer collaboration tools, transforming spaces with creativity and style.',
-        FR: "Plateforme de services de design d'intérieur avec visualisation 3D de pièces et outils de collaboration avec les designers. Transforme les espaces avec créativité et style."
+        FR: "Plateforme de services de design d'intérieur avec visualisation 3D de pièces et outils de collaboration avec les designers. Transforme les espaces avec créativité et style.",
+        AR: 'منصة خدمات تصميم داخلي مع تصور ثلاثي الأبعاد للغرف وأدوات تعاون المصممين، تحول المساحات بالإبداع والأناقة'
       },
       tags: ['Three.js', 'React', 'Node.js', 'MongoDB'],
       github: 'https://github.com/iSamerRizq74/VivaDecor',
@@ -125,7 +134,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'SmartFlow',
       description: {
         EN: 'AI-powered platform that simplifies content creation, boosts productivity, and enhances human creativity effortlessly.',
-        FR: "Plateforme alimentée par l'IA qui simplifie la création de contenu, booste la productivité et améliore la créativité humaine sans effort."
+        FR: "Plateforme alimentée par l'IA qui simplifie la création de contenu, booste la productivité et améliore la créativité humaine sans effort.",
+        AR: 'منصة مدعومة بالذكاء الاصطناعي تبسط إنشاء المحتوى، تعزز الإنتاجية، وتحسن الإبداع البشري بسهولة'
       },
       tags: ['React', 'Node.js', 'MongoDB', 'Redis'],
       github: 'https://github.com/iSamerRizq74/SmartFlow-GPT3',
@@ -138,7 +148,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'NikeVibe',
       description: {
         EN: 'Modern e-commerce platform showcasing the latest Nike collections, empowering athletes with style and performance.',
-        FR: 'Plateforme e-commerce moderne présentant les dernières collections Nike, habillant les athlètes avec style et performance.'
+        FR: 'Plateforme e-commerce moderne présentant les dernières collections Nike, habillant les athlètes avec style et performance.',
+        AR: 'منصة تجارة إلكترونية حديثة تعرض أحدث مجموعات نايكي، تمكّن الرياضيين بالأناقة والأداء'
       },
       tags: ['React', 'AR.js', 'Node.js', 'MongoDB'],
       github: 'https://github.com/iSamerRizq74/NikeSuperfly',
@@ -151,7 +162,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
       title: 'Portfolio',
       description: {
         EN: 'My personal portfolio showcasing my projects, skills, and professional experience, designed to highlight my journey in the tech field.',
-        FR: 'Mon portfolio personnel présentant mes projets, compétences et expérience professionnelle. Conçu pour mettre en valeur mon parcours dans le domaine technologique.'
+        FR: 'Mon portfolio personnel présentant mes projets, compétences et expérience professionnelle. Conçu pour mettre en valeur mon parcours dans le domaine technologique.',
+        AR: 'محفظتي الشخصية التي تعرض مشاريعي ومهاراتي وخبرتي المهنية، مصممة لتسليط الضوء على رحلتي في مجال التكنولوجيا'
       },
       tags: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
       github: 'https://github.com/iSamerRizq74/Portfolio',
@@ -166,13 +178,15 @@ const Work = ({ currentLanguage = 'EN' }) => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            {currentLanguage === 'FR' ? 'Projets' : 'Projects'}
+            {currentLanguage === 'FR' ? 'Projets' : currentLanguage === 'AR' ? 'مشاريعي' : 'Projects'}
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            {currentLanguage === 'FR' 
+            {currentLanguage === 'FR'
               ? 'Une sélection de mes projets récents et travaux personnels.'
-              : 'A selection of my recent work and personal projects.'}
+              : currentLanguage === 'AR'
+                ? 'مجموعة من مشاريعي الحديثة والأعمال الشخصية'
+                : 'A selection of my recent work and personal projects.'}
           </p>
         </div>
 
@@ -189,8 +203,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
               {/* Project Image */}
               <div className="relative w-full bg-gray-100 dark:bg-gray-700 overflow-hidden">
                 <div className="w-full flex items-center justify-center p-0">
-                  <img 
-                    src={project.image} 
+                  <img
+                    src={project.image}
                     alt={project.title}
                     className="w-full h-auto max-h-[350px] object-contain"
                     style={{ maxWidth: '100%' }}
@@ -211,8 +225,8 @@ const Work = ({ currentLanguage = 'EN' }) => {
                   </h3>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  {typeof project.description === 'object' 
-                    ? project.description[currentLanguage] 
+                  {typeof project.description === 'object'
+                    ? project.description[currentLanguage]
                     : project.description}
                 </p>
                 <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
@@ -223,7 +237,7 @@ const Work = ({ currentLanguage = 'EN' }) => {
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-200 hover:text-white bg-transparent hover:bg-blue-600/10 border border-blue-500/30 hover:border-blue-500/50 rounded-md transition-all duration-200"
                     >
-                      <FiGithub className="mr-2" /> {currentLanguage === 'FR' ? 'Voir le code' : 'View Code'}
+                      <FiGithub className="mr-2" /> {currentLanguage === 'FR' ? 'Voir le code' : currentLanguage === 'AR' ? 'عرض الكود' : 'View Code'}
                     </a>
                     <a
                       href={project.demo}
@@ -231,7 +245,7 @@ const Work = ({ currentLanguage = 'EN' }) => {
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-md transition-all duration-200 shadow-md hover:shadow-lg"
                     >
-                      <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : 'Live Demo'}
+                      <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : currentLanguage === 'AR' ? 'عرض مباشر' : 'Live Demo'}
                     </a>
                   </div>
                 </div>

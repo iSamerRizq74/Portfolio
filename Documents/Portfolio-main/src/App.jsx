@@ -21,9 +21,17 @@ function App() {
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('EN');
 
-  // Toggle language between EN and FR
-  const toggleLanguage = useCallback(() => {
-    setCurrentLanguage(prev => prev === 'EN' ? 'FR' : 'EN');
+  // Toggle language between EN, FR, and AR
+  const toggleLanguage = useCallback((lang) => {
+    if (lang && ['EN', 'FR', 'AR'].includes(lang)) {
+      setCurrentLanguage(lang);
+    } else {
+      setCurrentLanguage(prev => {
+        if (prev === 'EN') return 'FR';
+        if (prev === 'FR') return 'AR';
+        return 'EN';
+      });
+    }
   }, []);
 
   // Debug: Show current theme status
@@ -265,9 +273,11 @@ function App() {
 
       <footer className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-lg">© {new Date().getFullYear()} Samer Baher Rizk.</p>
+          <p className="text-lg">
+            {currentLanguage === 'AR' ? '© سامر باهر رزق ' + new Date().getFullYear() : new Date().getFullYear() + ' Samer Baher Rizk.'}
+          </p>
           <p className="text-gray-200 dark:text-gray-400 mb-6">
-            {currentLanguage === 'FR' ? 'Tous droits réservés.' : 'All rights reserved.'}
+            {currentLanguage === 'FR' ? 'Tous droits réservés.' : currentLanguage === 'AR' ? 'جميع الحقوق محفوظة' : 'All rights reserved.'}
           </p>
           <div className="flex justify-center space-x-6">
             <a

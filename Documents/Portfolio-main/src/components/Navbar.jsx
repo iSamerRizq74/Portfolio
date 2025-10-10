@@ -57,25 +57,25 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
   // Navigation items
   const navItems = [
     { 
-      name: currentLanguage === 'FR' ? 'À propos' : 'About', 
+      name: currentLanguage === 'FR' ? 'À propos' : currentLanguage === 'AR' ? 'حول' : 'About', 
       href: "#about", 
       isHighlighted: false, 
       isDarkBg: true 
     },
     { 
-      name: currentLanguage === 'FR' ? 'Compétences' : 'Skills', 
+      name: currentLanguage === 'FR' ? 'Compétences' : currentLanguage === 'AR' ? 'مهارات' : 'Skills', 
       href: "#skills", 
       isHighlighted: true, 
       isDarkBg: false 
     },
     { 
-      name: currentLanguage === 'FR' ? 'Projets' : 'Work', 
+      name: currentLanguage === 'FR' ? 'Projets' : currentLanguage === 'AR' ? 'مشاريع' : 'Work', 
       href: "#work", 
       isHighlighted: false, 
       isDarkBg: true 
     },
     { 
-      name: 'Contact', 
+      name: currentLanguage === 'FR' ? 'Contact' : currentLanguage === 'AR' ? 'اتصال' : 'Contact', 
       href: "#contact", 
       isHighlighted: true, 
       isDarkBg: false 
@@ -224,7 +224,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                           <button 
                             onClick={() => {
                               if (currentLanguage !== 'EN') {
-                                toggleLanguage();
+                                toggleLanguage('EN');
                               }
                               setIsLanguageMenuOpen(false);
                             }}
@@ -235,13 +235,24 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                           <button 
                             onClick={() => {
                               if (currentLanguage !== 'FR') {
-                                toggleLanguage();
+                                toggleLanguage('FR');
                               }
                               setIsLanguageMenuOpen(false);
                             }}
                             className={`px-3 py-1 text-sm ${currentLanguage === 'FR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
                           >
                             Français
+                          </button>
+                          <button 
+                            onClick={() => {
+                              if (currentLanguage !== 'AR') {
+                                toggleLanguage('AR');
+                              }
+                              setIsLanguageMenuOpen(false);
+                            }}
+                            className={`px-3 py-1 text-sm ${currentLanguage === 'AR' ? 'text-blue-400 font-medium' : 'text-gray-200 hover:text-white'} hover:bg-gray-600/30 rounded w-full text-center`}
+                          >
+                            العربية
                           </button>
                         </div>
                       </motion.div>
@@ -292,7 +303,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors flex items-center"
               >
                 <FiDownload className="mr-2" />
-                {currentLanguage === 'FR' ? 'CV' : 'Resume'}
+                {currentLanguage === 'FR' ? 'CV' : currentLanguage === 'AR' ? 'السيرة الذاتية' : 'Resume'}
               </button>
             </div>
 
@@ -379,7 +390,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                     className="w-full flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors"
                   >
                     <FiDownload className="mr-1" />
-                    {currentLanguage === 'FR' ? 'CV' : 'Resume'}
+                    {currentLanguage === 'FR' ? 'CV' : currentLanguage === 'AR' ? 'السيرة الذاتية' : 'Resume'}
                   </button>
                 </div>
               </div>

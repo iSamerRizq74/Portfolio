@@ -25,7 +25,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
   const contactInfo = [
     {
       icon: FiMail,
-      label: 'Email',
+      label: currentLanguage === 'AR' ? 'البريد الإلكتروني' : 'Email',
       value: 'samer.baher74@gmail.com',
       color: 'from-blue-600 to-blue-700',
       labelColor: 'text-blue-600 dark:text-blue-400',
@@ -33,7 +33,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
     },
     {
       icon: FiPhone,
-      label: currentLanguage === 'FR' ? 'Téléphone' : 'Phone',
+      label: currentLanguage === 'FR' ? 'Téléphone' : currentLanguage === 'AR' ? 'الهاتف' : 'Phone',
       value: '01065290660',
       color: 'from-purple-600 to-purple-700',
       labelColor: 'text-purple-600 dark:text-purple-400',
@@ -41,8 +41,8 @@ const Contact = ({ currentLanguage = 'EN' }) => {
     },
     {
       icon: FiMapPin,
-      label: currentLanguage === 'FR' ? 'Localisation' : 'Location',
-      value: currentLanguage === 'FR' ? 'Le Caire, Égypte' : 'Cairo, Egypt',
+      label: currentLanguage === 'FR' ? 'Localisation' : currentLanguage === 'AR' ? 'الموقع' : 'Location',
+      value: currentLanguage === 'FR' ? 'Le Caire, Égypte' : currentLanguage === 'AR' ? 'القاهرة، مصر' : 'Cairo, Egypt',
       color: 'from-green-600 to-green-700',
       labelColor: 'text-green-600 dark:text-green-400',
       valueColor: 'text-gray-600 dark:text-gray-300'
@@ -165,9 +165,9 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="text-3xl xs:text-4xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3"
                 >
-                  {currentLanguage === 'FR' ? 'Me ' : 'Get In '}
+                  {currentLanguage === 'FR' ? 'Me ' : currentLanguage === 'AR' ? 'تواصل ' : 'Get In '}
                   <span className="text-blue-500 dark:text-blue-400">
-                    {currentLanguage === 'FR' ? 'Contacter' : 'Touch'}
+                    {currentLanguage === 'FR' ? 'Contacter' : currentLanguage === 'AR' ? 'معي' : 'Touch'}
                   </span>
                 </motion.h2>
                 <div className="w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-3 sm:mb-4" />
@@ -177,9 +177,11 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg"
                 >
-                  {currentLanguage === 'FR' 
+                  {currentLanguage === 'FR'
                     ? 'Vous avez un projet ou des opportunités potentielles en tête? N\'hésitez pas à me contacter!'
-                    : 'Have a project or potential opportunities in mind? Feel free to reach out!'}
+                    : currentLanguage === 'AR'
+                      ? 'هل لديك مشروع أو فرص محتملة في ذهنك؟ لا تتردد في التواصل معي'
+                      : 'Have a project or potential opportunities in mind? Feel free to reach out!'}
                 </motion.p>
               </div>
 
@@ -194,10 +196,10 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                       <FiCheckCircle className="text-3xl text-green-500" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-                      {currentLanguage === 'FR' ? 'Message Envoyé!' : 'Message Sent!'}
+                      {currentLanguage === 'FR' ? 'Message Envoyé!' : currentLanguage === 'AR' ? 'تم إرسال الرسالة!' : 'Message Sent!'}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                      {currentLanguage === 'FR' ? 'Merci pour votre message. Je vous répondrai dès que possible.' : 'Thank you for your message. I will get back to you as soon as possible.'}
+                      {currentLanguage === 'FR' ? 'Merci pour votre message. Je vous répondrai dès que possible.' : currentLanguage === 'AR' ? 'شكرًا على رسالتك. سأرد عليك في أقرب وقت ممكن.' : 'Thank you for your message. I will get back to you as soon as possible.'}
                     </p>
                   </div>
                 </motion.div>
@@ -212,7 +214,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="name" className="block text-sm font-medium text-black dark:text-gray-300">
-                        {currentLanguage === 'FR' ? 'Nom' : 'Name'} <span className="text-red-500">*</span>
+                        {currentLanguage === 'FR' ? 'Nom' : currentLanguage === 'AR' ? 'الاسم' : 'Name'} <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
@@ -228,7 +230,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
 
                     <div className="space-y-2">
                       <label htmlFor="email" className="block text-sm font-medium text-black dark:text-gray-300">
-                        {currentLanguage === 'FR' ? 'Email' : 'Email'} <span className="text-red-400">*</span>
+                        {currentLanguage === 'FR' ? 'Email' : currentLanguage === 'AR' ? 'البريد الإلكتروني' : 'Email'} <span className="text-red-400">*</span>
                       </label>
                       <input
                         type="email"
@@ -245,7 +247,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
 
                   <div className="space-y-2">
                     <label htmlFor="message" className="block text-sm font-medium text-black dark:text-gray-300">
-                      {currentLanguage === 'FR' ? 'Message' : 'Message'} <span className="text-red-500">*</span>
+                      {currentLanguage === 'FR' ? 'Message' : currentLanguage === 'AR' ? 'الرسالة' : 'Message'} <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -270,10 +272,10 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                     >
                       <span className="relative z-10 flex items-center justify-center">
                         {isSubmitting ? (
-                          <>{currentLanguage === 'FR' ? 'Envoi en cours...' : 'Sending...'}</>
+                          <>{currentLanguage === 'FR' ? 'Envoi en cours...' : currentLanguage === 'AR' ? 'جاري الإرسال...' : 'Sending...'}</>
                         ) : (
                           <>
-                            <span>{currentLanguage === 'FR' ? 'Envoyer le message' : 'Send Message'}</span>
+                            <span>{currentLanguage === 'FR' ? 'Envoyer le message' : currentLanguage === 'AR' ? 'إرسال الرسالة' : 'Send Message'}</span>
                             <FiSend className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                           </>
                         )}
@@ -288,7 +290,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
             <motion.div variants={itemVariants} className="space-y-8">
               <div className="pt-12 mt-8">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
-                  {currentLanguage === 'FR' ? 'Coordonnées' : 'Contact Information'}
+                  {currentLanguage === 'FR' ? 'Coordonnées' : currentLanguage === 'AR' ? 'معلومات الاتصال' : 'Contact Information'}
                 </h3>
 
                 <div className="space-y-6">
