@@ -203,7 +203,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 </button>
 
                 {/* Language Selector */}
-                <div className="relative" ref={languageMenuRef}>
+                <div className="relative z-[9999]" ref={languageMenuRef}>
                   <button
                     onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
                     className="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
@@ -308,7 +308,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
             </div>
 
             {/* Mobile controls */}
-            <div className="flex items-center space-x-2 md:hidden">
+            <div className="flex items-center space-x-2 md:hidden relative z-[9999]">
               {/* Language Selector */}
               <div className="relative">
                 <button
@@ -321,7 +321,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 <AnimatePresence>
                   {isLanguageMenuOpen && (
                     <motion.div
-                      className="absolute right-0 mt-2 bg-gray-700/95 backdrop-blur-md rounded-lg shadow-lg p-2 z-50 border border-gray-600/30 min-w-[100px] text-center"
+                      className="fixed right-4 top-20 bg-gray-800/95 backdrop-blur-md rounded-lg shadow-lg p-2 z-[9999] border border-gray-600/30 min-w-[100px] text-center"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
