@@ -439,6 +439,41 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 </div>
 
                 <div className="flex flex-col space-y-3 mt-3">
+                  {/* Language Selector for Mobile Menu */}
+                  <div className="w-full">
+                    <p className="text-sm text-gray-400 text-center mb-2">
+                      {currentLanguage === 'FR' ? 'Langue' : currentLanguage === 'AR' ? 'اللغة' : 'Language'}
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      <button 
+                        onClick={() => {
+                          if (currentLanguage !== 'EN') toggleLanguage('EN');
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`py-2 text-sm rounded-md transition-colors ${currentLanguage === 'EN' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200 hover:bg-gray-600'}`}
+                      >
+                        English
+                      </button>
+                      <button 
+                        onClick={() => {
+                          if (currentLanguage !== 'FR') toggleLanguage('FR');
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`py-2 text-sm rounded-md transition-colors ${currentLanguage === 'FR' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200 hover:bg-gray-600'}`}
+                      >
+                        Français
+                      </button>
+                      <button 
+                        onClick={() => {
+                          if (currentLanguage !== 'AR') toggleLanguage('AR');
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`py-2 text-sm rounded-md transition-colors ${currentLanguage === 'AR' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-200 hover:bg-gray-600'}`}
+                      >
+                        العربية
+                      </button>
+                    </div>
+                  </div>
 
                   <button
                     onClick={(e) => {
