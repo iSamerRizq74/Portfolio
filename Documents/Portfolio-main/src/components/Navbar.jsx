@@ -310,10 +310,10 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
             {/* Mobile controls */}
             <div className="flex items-center space-x-2 md:hidden">
               {/* Language Selector */}
-              <div className="relative">
+              <div className="relative z-50">
                 <button
                   onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
+                  className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors z-50 relative"
                   aria-label="Select language"
                 >
                   <FiGlobe className="w-5 h-5" />
