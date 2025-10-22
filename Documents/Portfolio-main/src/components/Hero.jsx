@@ -1,0 +1,220 @@
+import { motion, useReducedMotion } from 'framer-motion';
+import { FiArrowRight } from 'react-icons/fi';
+
+const Hero = ({ currentLanguage = 'EN' }) => {
+  const prefersReducedMotion = useReducedMotion();
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.6,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    },
+  };
+
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.8,
+        ease: 'easeOut'
+      }
+    }
+  };
+
+  // Optimized background animation for mobile
+  const backgroundAnimation = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 1,
+        ease: 'easeOut'
+      }
+    }
+  };
+
+  // Optimized scroll indicator animation for mobile
+  const scrollIndicator = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: [0, 1, 1, 0],
+      y: [20, 0, -10, -20],
+      transition: {
+        duration: 2.5,
+        repeat: Infinity,
+        repeatType: "loop"
+      }
+    }
+  };
+
+  return (
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-[#CCCCCC] dark:bg-gray-900 pt-20">
+      {/* Background elements */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        variants={backgroundAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        <div className="absolute inset-0 bg-[#CCCCCC] dark:bg-gray-900" />
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9IiMxMTExMTEiLz4KICA8cGF0aCBkPSJNMzYgMzRWNjBINnYtMjZoMzB6TTYgMjZoMzBWNmgzMHYyMHoiIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgo8L3N2Zz4=')] opacity-5 dark:opacity-10" />
+      </motion.div>
+
+      <div className="container relative z-10 px-4 mx-auto">
+        {/* Mobile Profile Picture - Only shows on small screens */}
+        <div className="lg:hidden flex justify-center mb-6 mt-4">
+          <motion.div
+            className="w-48 h-64 md:w-56 md:h-72 overflow-hidden rounded-lg shadow-2xl border-4 border-white dark:border-gray-800"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <img
+              src="/images/samer.jpg"
+              alt="Samer Baher Rizk"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 20%' }}
+            />
+          </motion.div>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+          {/* Text Content */}
+          <motion.div
+            className="w-full lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0"
+            variants={container}
+            initial="hidden"
+            animate="show"
+          >
+            {/* Greeting */}
+            <motion.div
+              variants={prefersReducedMotion ? undefined : item}
+              className="mb-1 sm:mb-2"
+            >
+              <span className="text-blue-400 text-base sm:text-lg md:text-xl font-medium tracking-wider">
+
+              </span>
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 w-[95%] max-w-3xl mx-auto text-center lg:text-left whitespace-nowrap"
+              variants={item}
+            >
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-500 dark:to-pink-500 bg-clip-text text-transparent">
+                {currentLanguage === 'AR' ? 'سامر باهر رزق' : 'Samer Baher Rizk'}
+              </span>
+            </motion.h1>
+
+            {/* Title */}
+            <motion.div
+              variants={prefersReducedMotion ? undefined : item}
+              className="mb-4 sm:mb-6 w-[98%] max-w-5xl mx-auto"
+            >
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-center lg:text-left">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-400">
+                  {currentLanguage === 'FR' ? 'Développeur Full Stack' : currentLanguage === 'AR' ? 'مطور ويب متكامل' : 'Full Stack Developer'}
+                </span>
+              </h2>
+            </motion.div>
+
+            {/* Description - Improved line length and spacing */}
+            <motion.div
+              variants={prefersReducedMotion ? undefined : item}
+              className="text-gray-400 text-[0.9rem] sm:text-[1rem] md:text-[1.1rem] w-[98%] max-w-5xl mx-auto mb-4 sm:mb-6"
+            >
+              <div className="w-full">
+                <p className="text-justify leading-relaxed">
+                  <span className="block w-full text-gray-800 dark:text-gray-300">
+                    {currentLanguage === 'FR'
+                      ? "Développeur Full Stack passionné et diplômé de l'ITI avec une expérience pratique sur des projets réels. Compétent en développement front-end et back-end, fournissant des solutions évolutives et fiables. Diplômé en informatique de l'Université de Mansoura, je suis motivé par l'apprentissage continu, extrêmement méticuleux et autonome, je prospère face aux défis, valorise un code propre et efficace, avec un accent marqué sur la création d'applications web percutantes."
+                      : currentLanguage === 'AR'
+                        ? 'مُطور ويب مُتكامل شغوف وخريج معهد تكنولوجيا المعلومات التابع لوزارة الإتصالات، مع خبرة عملية في المشاريع الحقيقية. مُتمكن في تطوير الواجهات الأمامية والخلفية، وأقدم حلولاً تقنية قابلة للتوسع وموثوقة. خريج كلية الحاسبات والمعلومات من جامعة المنصورة، يدفعني شغف التعلم المستمر، وأتميز بالدقة الشديدة والعمل الذاتي. أزدهر بالتحديات، وأهتم بكتابة كود نظيف وفعّال، مع تركيز قوي على إنشاء تطبيقات ويب ذات تأثير ملموس.'
+                        : "Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. I enjoy turning ideas into functional and user-friendly digital products that make a real impact. Computer Science graduate from Mansoura University, Proficient in modern technologies, frameworks, and software architecture best practices. Driven by continuous learning and self-motivated. I thrive on challenges, value clean and efficient code, focused on building impactful web applications."
+                    }
+                  </span>
+                </p>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons - Stack on mobile, row on larger screens */}
+            <motion.div
+              variants={prefersReducedMotion ? undefined : item}
+              className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6 w-full"
+            >
+              <a
+                href="#work"
+                className="group relative px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 text-sm sm:text-base w-auto min-w-[180px] sm:w-auto"
+                aria-label="View my work"
+              >
+                <span className="relative z-10 flex items-center justify-center w-full">
+                  <span className="relative">
+                    {currentLanguage === 'FR' ? 'Voir Mes Projets' : currentLanguage === 'AR' ? 'مشاريعي' : 'View My Work'}
+                    <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+
+              <a
+                href="#contact"
+                className="group relative px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/30 text-sm sm:text-base w-auto min-w-[180px] sm:w-auto"
+                aria-label="Get in touch"
+              >
+                <span className="relative z-10 flex items-center justify-center w-full">
+                  <span className="relative">
+                    {currentLanguage === 'FR' ? 'Me Contacter' : currentLanguage === 'AR' ? 'تواصل معي' : 'Get In Touch'}
+                    <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-slate-800 to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </a>
+            </motion.div>
+
+          </motion.div>
+
+          {/* Profile Picture - Hidden on mobile, shown on desktop */}
+          <div className="hidden lg:block">
+            <motion.div
+              className="w-64 h-80 md:w-72 md:h-[26rem] lg:w-96 lg:h-[30rem] overflow-hidden rounded-lg shadow-2xl z-20 border-4 border-white dark:border-gray-800 mr-4 md:mr-8"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <img
+                src="/images/samer.jpg"
+                alt="Samer Baher Rizk"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 20%' }}
+              />
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  );
+};
+
+export default Hero;
