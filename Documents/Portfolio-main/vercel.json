@@ -3,11 +3,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@vitejs/plugin-react",
-      "config": {
-        "distDir": "dist"
-      }
+      "use": "@vercel/static-build"
     }
-  ],
-  "buildCommand": "npm install && npm run build"
+  ]
 }

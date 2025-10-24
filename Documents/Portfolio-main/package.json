@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "vercel-build": "vite build"
+    "vercel-build": "npm install && npm run build"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
