@@ -95,27 +95,27 @@ const About = ({ currentLanguage = 'EN' }) => {
               <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-3">
                 {currentLanguage === 'FR' ? 'Qui suis-je ?' : currentLanguage === 'AR' ? 'من أنا؟' : 'Who Am I?'}
               </h3>
-              <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed text-[0.9rem] sm:text-[1rem] md:text-[1.1rem] text-justify px-2">
+              <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed text-[0.88rem] sm:text-[0.93rem] md:text-[1rem] text-justify px-2">
                 <p className="max-w-2xl mx-auto">
                   {currentLanguage === 'FR'
                     ? "Je suis un Développeur Full Stack passionné, fort d'une expertise solide en développement frontend et backend. Je me consacre à la création de solutions créatives et fiables qui ont un impact. J'aime transformer des idées complexes en applications web modernes, évolutives et responsives. Mon objectif est d'écrire un code propre et efficace qui offre des performances optimales et des expériences digitales significatives aux utilisateurs."
                     : currentLanguage === 'AR'
                       ? 'أنا مطور ويب متكامل شغوف، أتمتع بخبرة قوية في تطوير الواجهة الأمامية والخلفية. أكرس جهودي لإنشاء حلول مبتكرة وموثوقة تحدث تأثيرًا. أحب تحويل الأفكار المعقدة إلى تطبيقات ويب حديثة وقابلة للتوسع ومتجاوبة. هدفي هو كتابة كود نظيف وفعال يوفر أداءً مثاليًا وتجارب رقمية ذات مغزى للمستخدمين.'
-                      : "I am a passionate Full Stack Developer with strong expertise in both frontend and backend development. I am dedicated to creating creative and reliable solutions that make an impact. I enjoy transforming complex ideas into modern, scalable, and responsive web applications. My goal is to write clean and efficient code that delivers optimal performance and meaningful digital experiences to users."}
+                      : "Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Versed in developing both client-side and server-side applications. Computer Science graduate from Mansoura University, Skilled in modern technologies and frameworks. Driven by continuous learning and self-motivated."}
                 </p>
                 <p className="max-w-2xl mx-auto">
                   {currentLanguage === 'FR'
                     ? "Mon parcours dans le développement web a commencé il y a plusieurs années, durant lesquels j'ai travaillé sur une large gamme de projets, allant des sites vitrines pour petites entreprises aux plateformes web. J'ai contribué au développement full stack, en concevant des interfaces intuitives et en construisant des API sécurisées et performantes. Je suis dévoué à l'écriture d'un code propre et à l'amélioration continue de mes compétences grâce à la collaboration et à la résolution de problèmes."
                     : currentLanguage === 'AR'
                       ? 'بدأت رحلتي في تطوير الويب منذ عدة سنوات، حيث عملت على مجموعة واسعة من المشاريع، من مواقع الشركات الصغيرة إلى منصات الويب. ساهمت في تطوير الواجهة الكاملة، وتصميم واجهات مستخدم بديهية وبناء واجهات برمجة تطبيقات آمنة وعالية الأداء. أنا ملتزم بكتابة كود نظيف وتحسين مهاراتي باستمرار من خلال التعاون وحل المشكلات.'
-                      : "My journey in web development began several years ago, during which I've worked on a wide range of projects, from small business websites to web platforms. I've contributed to full-stack development, designing intuitive interfaces and building secure, high-performance APIs. I am committed to writing clean code and continuously improving my skills through collaboration and problem-solving."}
+                      : "My journey in web development began several years ago, during which I've worked on a wide range of projects, from small business websites to web platforms. My work has focused on bridging design and functionality, ensuring smooth performance across all layers of development."}
                 </p>
                 <p className="max-w-2xl mx-auto">
                   {currentLanguage === 'FR'
                     ? "Lorsque je ne code pas, j'aime explorer les technologies émergentes, contribuer à des projets open-source et partager mes connaissances au sein de la communauté des développeurs. Ces expériences m'aident à me tenir à jour, à collaborer efficacement et à affiner continuellement mes compétences techniques. Je suis toujours impatient de relever de nouveaux défis et de construire des produits innovants, centrés sur l'utilisateur et porteurs de sens."
                     : currentLanguage === 'AR'
                       ? 'عندما لا أكون مشغولاً بالبرمجة، أستمتع باستكشاف التقنيات الناشئة، والمساهمة في مشاريع مفتوحة المصدر، ومشاركة المعرفة داخل مجتمع المطورين. تساعدني هذه الخبرات على البقاء على اطلاع، والتعاون بفعالية، وتحسين مهاراتي التقنية باستمرار. أنا دائمًا متحمس لمواجهة تحديات جديدة وبناء منتجات مبتكرة تركز على المستخدم وتحدث تأثيرًا.'
-                      : "When I'm not coding, I enjoy exploring emerging technologies, contributing to open-source projects, and sharing knowledge within the developer community. These experiences help me stay current, collaborate effectively, and continuously refine my technical skills. I'm always eager to take on new challenges and build innovative, user-centered products that make a meaningful impact."}
+                      : "When I'm not coding, I explore emerging technologies, contribute to open source, and share knowledge with the developer community — staying current, collaborative, and continuously refine my technical skills. I'm always eager to build things that make a difference"}
                 </p>
               </div>
             </motion.div>
