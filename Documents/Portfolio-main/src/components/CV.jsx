@@ -38,13 +38,13 @@ const CV = () => {
           viewport={{ once: true, margin: "-100px" }}
           variants={container}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-500 bg-clip-text text-transparent"
             variants={item}
           >
             CV
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-800 dark:text-gray-300 max-w-3xl mx-auto"
             variants={item}
           >
@@ -52,7 +52,7 @@ const CV = () => {
           </motion.p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-lg dark:shadow-2xl max-w-4xl mx-auto border border-gray-200 dark:border-gray-700 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,12 +60,12 @@ const CV = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="w-full" style={{ height: 'calc(100vh - 250px)', minHeight: '500px' }}>
-            <iframe 
-              src="/SamerCV.pdf#toolbar=1&navpanes=1&view=FitH&zoom=100&title=Samer Baher Rizk" 
+            <iframe
+              src="/SamerCV.pdf#toolbar=1&navpanes=1&view=FitH&zoom=100&title=Samer Baher Rizk"
               className="w-full h-full border-0"
               title="Samer Baher Rizk CV"
-              style={{ 
-                width: '100%', 
+              style={{
+                width: '100%',
                 height: '100%',
                 minHeight: '500px',
                 overflow: 'auto'

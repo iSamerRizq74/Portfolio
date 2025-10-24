@@ -77,7 +77,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9IiMxMTExMTEiLz4KICA8cGF0aCBkPSJNMzYgMzRWNjBINnYtMjZoMzB6TTYgMjZoMzBWNmgzMHYyMHoiIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgo8L3N2Zz4=')] opacity-5 dark:opacity-10" />
       </motion.div>
 
-      <div className="container relative z-10 px-4 mx-auto">
+      <div className="relative z-10 w-full max-w-[98%] 2xl:max-w-[95%] 3xl:max-w-[1400px] mx-auto px-0 md:px-6">
         {/* Mobile Profile Picture - Only shows on small screens */}
         <div className="lg:hidden flex justify-center mb-6 mt-4">
           <motion.div
@@ -138,16 +138,16 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             {/* Description - Improved line length and spacing */}
             <motion.div
               variants={prefersReducedMotion ? undefined : item}
-              className="text-gray-400 text-[0.9rem] sm:text-[1rem] md:text-[1.1rem] w-[98%] max-w-5xl mx-auto mb-4 sm:mb-6"
+              className="text-gray-400 text-[0.88rem] sm:text-[0.93rem] md:text-[1rem] w-full mb-4 sm:mb-6"
             >
               <div className="w-full">
-                <p className="text-justify leading-relaxed">
+                <p className="text-justify leading-relaxed w-full pr-0 xl:pr-8 text-[0.88rem] sm:text-[0.93rem] md:text-[1rem] tracking-tight">
                   <span className="block w-full text-gray-800 dark:text-gray-300">
                     {currentLanguage === 'FR'
-                      ? "Développeur Full Stack passionné et diplômé de l'ITI avec une expérience pratique sur des projets réels. Compétent en développement front-end et back-end, fournissant des solutions évolutives et fiables. Diplômé en informatique de l'Université de Mansoura, je suis motivé par l'apprentissage continu, extrêmement méticuleux et autonome, je prospère face aux défis, valorise un code propre et efficace, avec un accent marqué sur la création d'applications web percutantes."
+                      ? "Création de sites web modernes, réactifs et conviviaux avec passion et précision. Dédié à la construction de solutions numériques créatives et fiables qui ont un impact réel. J'aime transformer des idées complexes en applications web évolutives, avec un accent fort sur la fourniture d'expériences utilisateur fluides, le maintien d'une excellente interface utilisateur/expérience utilisateur et l'écriture de code propre et maintenable."
                       : currentLanguage === 'AR'
-                        ? 'مُطور ويب مُتكامل شغوف وخريج معهد تكنولوجيا المعلومات التابع لوزارة الإتصالات، مع خبرة عملية في المشاريع الحقيقية. مُتمكن في تطوير الواجهات الأمامية والخلفية، وأقدم حلولاً تقنية قابلة للتوسع وموثوقة. خريج كلية الحاسبات والمعلومات من جامعة المنصورة، يدفعني شغف التعلم المستمر، وأتميز بالدقة الشديدة والعمل الذاتي. أزدهر بالتحديات، وأهتم بكتابة كود نظيف وفعّال، مع تركيز قوي على إنشاء تطبيقات ويب ذات تأثير ملموس.'
-                        : "Passionate Full Stack Developer and ITI graduate with hands-on experience in real-world projects. Skilled in both front-end and back-end development, delivering scalable and reliable solutions. I enjoy turning ideas into functional and user-friendly digital products that make a real impact. Computer Science graduate from Mansoura University, Proficient in modern technologies, frameworks, and software architecture best practices. Driven by continuous learning and self-motivated. I thrive on challenges, value clean and efficient code, focused on building impactful web applications."
+                        ? 'أقوم بإنشاء مواقع ويب عصرية وسريعة الاستجابة وسهلة الاستخدام بشغف ودقة. ملتزم ببناء حلول رقمية إبداعية وموثوقة يكون لها تأثير حقيقي. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز الشديد على تقديم تجارب مستخدم سلسة، والحفاظ على واجهة مستخدم وتجربة مستخدم ممتازة، وكتابة كود نظيف وسهل الصيانة.'
+                        : "Crafting modern, responsive, and user-friendly websites with passion and precision. Dedicated to building creative and reliable custom digital solutions that make a real impact. Enjoy transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. Delivering great user experiences."
                     }
                   </span>
                 </p>
