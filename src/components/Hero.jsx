@@ -157,38 +157,36 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             {/* CTA Buttons - Stack on mobile, row on larger screens */}
             <motion.div
               variants={prefersReducedMotion ? undefined : item}
-              className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-4 sm:mb-6 w-full"
+              className="flex flex-row flex-wrap justify-center items-center gap-2 sm:gap-4 mb-4 sm:mb-6 w-full"
             >
               <a
                 href="#work"
-                className="group relative px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/30 text-sm sm:text-base w-auto min-w-[180px] sm:w-auto"
+                className="group relative px-4 py-2.5 sm:px-6 sm:py-3.5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/40 hover:-translate-y-0.5 text-sm sm:text-[0.95rem] w-auto min-w-[calc(50%-0.5rem)] sm:min-w-[180px]"
                 aria-label="View my work"
               >
-                <span className="relative z-10 flex items-center justify-center w-full">
-                  <span className="relative">
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <span className="relative flex items-center">
+                    <span className="mr-1.5">💻</span>
                     {currentLanguage === 'FR' ? 'Voir Mes Projets' : currentLanguage === 'AR' ? 'مشاريعي' : 'View My Work'}
-                    <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                      <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
                   </span>
+                  <FiArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
 
               <a
                 href="#contact"
-                className="group relative px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-slate-700 to-slate-800 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-slate-500/30 text-sm sm:text-base w-auto min-w-[180px] sm:w-auto"
+                className="group relative px-4 py-2.5 sm:px-6 sm:py-3.5 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-full font-medium overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/30 hover:-translate-y-0.5 text-sm sm:text-[0.95rem] w-auto min-w-[calc(50%-0.5rem)] sm:min-w-[180px] border border-gray-600/40 hover:border-transparent"
                 aria-label="Get in touch"
               >
-                <span className="relative z-10 flex items-center justify-center w-full">
-                  <span className="relative">
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  <span className="relative flex items-center">
+                    <span className="mr-1.5">✉️</span>
                     {currentLanguage === 'FR' ? 'Me Contacter' : currentLanguage === 'AR' ? 'تواصل معي' : 'Get In Touch'}
-                    <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                      <FiArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
                   </span>
+                  <FiArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-slate-800 to-slate-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </a>
             </motion.div>
 

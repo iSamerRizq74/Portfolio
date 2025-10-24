@@ -216,9 +216,9 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                   aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 >
                   {darkMode ? (
-                    <FiMoon className="w-5 h-5 text-gray-200" />
+                    <FiMoon className="w-5 h-5 text-gray-200 hover:text-white transition-colors" />
                   ) : (
-                    <FiSun className="w-5 h-5 text-white" />
+                    <FiSun className="w-5 h-5 text-gray-200 hover:text-white transition-colors" />
                   )}
                 </button>
 
@@ -229,7 +229,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                     className="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
                     aria-label="Select language"
                   >
-                    <FiGlobe className="w-5 h-5 text-gray-200" />
+                    <FiGlobe className="w-5 h-5 text-gray-200 hover:text-white transition-colors" />
                   </button>
                   <AnimatePresence>
                     {isLanguageMenuOpen && (
@@ -309,7 +309,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                             onClick={social.onClick || (() => setIsSocialMenuOpen(false))}
                             aria-label={social.label}
                           >
-                            {React.cloneElement(social.icon, { className: 'w-5 h-5' })}
+                            {React.cloneElement(social.icon, { className: 'w-5 h-5 text-gray-200 hover:text-white transition-colors' })}
                           </a>
                         ))}
                       </div>
@@ -322,7 +322,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 onClick={handleResumeDownload}
                 className="ml-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors flex items-center"
               >
-                <FiDownload className="mr-2" />
+                <FiDownload className="mr-2 text-gray-200 hover:text-white transition-colors" />
                 {currentLanguage === 'FR' ? 'CV' : currentLanguage === 'AR' ? 'السيرة الذاتية' : 'Resume'}
               </button>
             </div>
@@ -336,9 +336,9 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
                 {darkMode ? (
-                  <FiMoon className="w-5 h-5" />
+                  <FiMoon className="h-6 w-6 text-gray-200 hover:text-white transition-colors" />
                 ) : (
-                  <FiSun className="w-5 h-5" />
+                  <FiSun className="h-6 w-6 text-gray-200 hover:text-white transition-colors" />
                 )}
               </button>
 
@@ -349,7 +349,7 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                   className="p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-colors"
                   aria-label="Select language"
                 >
-                  <FiGlobe className="w-5 h-5 text-gray-200" />
+                  <FiGlobe className="w-5 h-5 text-gray-200 hover:text-white transition-colors" />
                 </button>
                 <AnimatePresence>
                   {isLanguageMenuOpen && (
@@ -406,7 +406,11 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
                 className="p-2 text-gray-400 hover:text-white rounded-md hover:bg-gray-700 transition-colors"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
               >
-                {isMobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+                {isMobileMenuOpen ? (
+                  <FiX className="w-6 h-6 text-gray-200 hover:text-white transition-colors" />
+                ) : (
+                  <FiMenu className="w-6 h-6 text-gray-200 hover:text-white transition-colors" />
+                )}
               </button>
             </div>
           </div>

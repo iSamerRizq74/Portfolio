@@ -88,7 +88,7 @@ const SideNavigation = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {['home', 'about', 'skills', 'work', 'contact'].map((section) => (
+      {['hero', 'about', 'skills', 'work', 'contact'].map((section) => (
         <button
           key={section}
           onClick={() => scrollToSection(section)}
