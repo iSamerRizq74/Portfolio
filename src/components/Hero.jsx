@@ -87,7 +87,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="/Samer.png"
+              src="/images/samer.jpg"
               alt="Samer Baher Rizk"
               className="w-full h-full object-cover"
               style={{ objectPosition: 'center 20%' }}
