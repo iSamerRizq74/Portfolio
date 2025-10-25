@@ -2,7 +2,40 @@
 <html lang="en" class="">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link id="favicon" rel="icon" type="image/png" href="/SBR1.png" />
+  <script>
+    // Create circular favicon
+    (function() {
+      const favicon = document.getElementById('favicon');
+      const img = new Image();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Set canvas size (favicon is typically 32x32)
+      const size = 64; // Larger size for better quality
+      canvas.width = size;
+      canvas.height = size;
+      
+      // Load the image
+      img.onload = function() {
+        // Create circular clipping
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
+        
+        // Draw the image
+        ctx.drawImage(img, 0, 0, size, size);
+        
+        // Update favicon
+        favicon.href = canvas.toDataURL('image/png');
+      };
+      
+      // Set image source (this will trigger onload)
+      img.src = '/SBR1.png';
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Samer Baher Rizk | Portfolio</title>
   <style>

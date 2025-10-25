@@ -92,7 +92,7 @@ const About = ({ currentLanguage = 'EN' }) => {
               className="w-full max-w-3xl text-center"
               variants={prefersReducedMotion ? undefined : item}
             >
-              <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-3">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-3">
                 {currentLanguage === 'FR' ? 'Qui suis-je ?' : currentLanguage === 'AR' ? 'من أنا؟' : 'Who Am I?'}
               </h3>
               <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed text-[0.88rem] sm:text-[0.93rem] md:text-[1rem] text-justify px-2">
