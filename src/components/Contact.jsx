@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiGithub, FiLinkedin, FiInstagram, FiFacebook } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiGithub, FiLinkedin, FiInstagram, FiFacebook, FiCopy, FiCheck } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 
 const Contact = ({ currentLanguage = 'EN' }) => {
@@ -22,6 +22,37 @@ const Contact = ({ currentLanguage = 'EN' }) => {
     }));
   };
 
+  const [copiedItem, setCopiedItem] = useState(null);
+  const copyTimeoutRef = useRef(null);
+
+  const copyToClipboard = async (text, index) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedItem(index);
+      
+      // Clear any existing timeout
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+      
+      // Reset the copied state after 2 seconds
+      copyTimeoutRef.current = setTimeout(() => {
+        setCopiedItem(null);
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
+  // Clean up the timeout when the component unmounts
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) {
+        clearTimeout(copyTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const contactInfo = [
     {
       icon: FiMail,
@@ -29,7 +60,8 @@ const Contact = ({ currentLanguage = 'EN' }) => {
       value: 'samer.baher74@gmail.com',
       color: 'from-blue-600 to-blue-700',
       labelColor: 'text-blue-600 dark:text-blue-400',
-      valueColor: 'text-gray-600 dark:text-gray-300'
+      valueColor: 'text-gray-600 dark:text-gray-300',
+      copyable: true
     },
     {
       icon: FiPhone,
@@ -37,7 +69,8 @@ const Contact = ({ currentLanguage = 'EN' }) => {
       value: '01065290660',
       color: 'from-purple-600 to-purple-700',
       labelColor: 'text-purple-600 dark:text-purple-400',
-      valueColor: 'text-gray-600 dark:text-gray-300'
+      valueColor: 'text-gray-600 dark:text-gray-300',
+      copyable: true
     },
     {
       icon: FiMapPin,
@@ -45,7 +78,8 @@ const Contact = ({ currentLanguage = 'EN' }) => {
       value: currentLanguage === 'FR' ? 'Le Caire, Égypte' : currentLanguage === 'AR' ? 'القاهرة، مصر' : 'Cairo, Egypt',
       color: 'from-green-600 to-green-700',
       labelColor: 'text-green-600 dark:text-green-400',
-      valueColor: 'text-gray-600 dark:text-gray-300'
+      valueColor: 'text-gray-600 dark:text-gray-300',
+      copyable: false
     },
   ];
 
@@ -289,21 +323,38 @@ const Contact = ({ currentLanguage = 'EN' }) => {
             {/* Contact Information */}
             <motion.div variants={itemVariants} className="space-y-8">
               <div className="pt-12 mt-8">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-2">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-6">
                   {currentLanguage === 'FR' ? 'Coordonnées' : currentLanguage === 'AR' ? 'معلومات الاتصال' : 'Contact Information'}
                 </h3>
-
                 <div className="space-y-6">
-                  {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-start group">
-                      <div className={`flex-shrink-0 p-3 rounded-lg bg-gradient-to-br ${info.color} text-white`}>
-                        <info.icon className="w-6 h-6" />
-                      </div>
-                      <div className="ml-4">
-                        <p className={`text-sm font-medium ${info.labelColor}`}>{info.label}</p>
-                        <p className={`${info.valueColor} font-medium text-sm sm:text-base`}>
-                          {info.value}
-                        </p>
+                  {contactInfo.map((item, index) => (
+                    <div 
+                      key={index}
+                      className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-4 hover:shadow-lg transition-all duration-300"
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center space-x-4">
+                          <div className={`p-3 rounded-full bg-gradient-to-r ${item.color} text-white`}>
+                            <item.icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <p className={`text-sm font-medium ${item.labelColor}`}>{item.label}</p>
+                            <p className={item.valueColor}>{item.value}</p>
+                          </div>
+                        </div>
+                        {item.copyable && (
+                          <button
+                            onClick={() => copyToClipboard(item.value, index)}
+                            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+                            aria-label={currentLanguage === 'AR' ? 'نسخ' : 'Copy to clipboard'}
+                          >
+                            {copiedItem === index ? (
+                              <FiCheck className="w-5 h-5 text-green-500" />
+                            ) : (
+                              <FiCopy className="w-5 h-5" />
+                            )}
+                          </button>
+                        )}
                       </div>
                     </div>
                   ))}

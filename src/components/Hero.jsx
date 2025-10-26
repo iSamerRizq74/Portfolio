@@ -1,6 +1,9 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 
+// Import the image
+import samerImage from '../assets/images/samer.jpg';
+
 const Hero = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
 
@@ -87,10 +90,17 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="/images/samer.jpg"
+              src={samerImage}
               alt="Samer Baher Rizk"
               className="w-full h-full object-cover"
               style={{ objectPosition: 'center 20%' }}
+              loading="lazy"
+              width="224"
+              height="288"
+              onError={(e) => {
+                console.error('Failed to load image:', e.target.src);
+                e.target.style.display = 'none';
+              }}
             />
           </motion.div>
         </div>

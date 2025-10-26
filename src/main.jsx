@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 
@@ -56,9 +57,11 @@ const renderApp = () => {
     console.log('main.jsx: Rendering App component...');
     root.render(
       <React.StrictMode>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
+        <BrowserRouter>
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
+        </BrowserRouter>
       </React.StrictMode>
     );
     console.log('main.jsx: App rendered successfully');
