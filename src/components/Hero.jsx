@@ -1,8 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 
-// Import the image
-import samerImage from '../assets/images/samer.jpg';
+// Hero image path
+const heroImage = '/images/samer.jpg';
 
 const Hero = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
@@ -89,19 +89,26 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <img
-              src={samerImage}
-              alt="Samer Baher Rizk"
-              className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 20%' }}
-              loading="lazy"
-              width="224"
-              height="288"
-              onError={(e) => {
-                console.error('Failed to load image:', e.target.src);
-                e.target.style.display = 'none';
-              }}
-            />
+            <div className="relative w-full h-full">
+              <img
+                src={heroImage}
+                alt="Samer Baher Rizk - Full Stack Developer"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: 'center 20%' }}
+                loading="eager"
+                width="400"
+                height="500"
+                onLoad={(e) => {
+                  // Remove shimmer effect once image is loaded
+                  e.target.classList.remove('shimmer');
+                  e.target.style.background = 'none';
+                }}
+                onError={(e) => {
+                  console.error('Failed to load image:', e.target.src);
+                  e.target.style.display = 'none';
+                }}
+              />
+            </div>
           </motion.div>
         </div>
 
