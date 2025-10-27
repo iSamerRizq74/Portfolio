@@ -27,6 +27,12 @@
   transition-property: background-color, border-color, color, fill, stroke;
 }
 
+/* Prevent transitions on loading spinners */
+.loading-spinner,
+.loading-spinner * {
+  transition: none !important;
+}
+
 /* Apply theme colors */
 body {
   @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white;

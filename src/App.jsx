@@ -17,8 +17,8 @@ const ScrollButtons = lazy(() => import('./components/ScrollButtons'));
 
 // Loading fallback component
 const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
   </div>
 );
 
@@ -79,12 +79,16 @@ function App() {
         }
       } catch (error) {
         console.error('Error initializing theme:', error);
+      } finally {
+        // Set loading to false after a minimal delay to ensure smooth transition
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 300);
+        return () => clearTimeout(timer);
       }
     };
 
     initializeTheme();
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
   }, []);
 
   // Handle WhatsApp click
@@ -114,10 +118,7 @@ function App() {
   if (isLoading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-white text-lg font-medium">Loading Portfolio...</p>
-        </div>
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
