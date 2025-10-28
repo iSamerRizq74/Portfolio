@@ -147,7 +147,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             >
               <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-center lg:text-left">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-400">
-                  {currentLanguage === 'FR' ? 'Développeur Full Stack' : currentLanguage === 'AR' ? 'مطور ويب متكامل' : 'Full Stack Developer'}
+                  {currentLanguage === 'FR' ? 'Développeur Full Stack' : currentLanguage === 'AR' ? 'مطور ويب شامل' : 'Full Stack Developer'}
                 </span>
               </h2>
             </motion.div>
@@ -161,9 +161,10 @@ const Hero = ({ currentLanguage = 'EN' }) => {
                 <p className="text-justify leading-relaxed w-full pr-0 xl:pr-8 text-[0.88rem] sm:text-[0.93rem] md:text-[1rem] tracking-tight">
                   <span className="block w-full text-gray-800 dark:text-gray-300">
                     {currentLanguage === 'FR'
-                      ? "Création de sites web modernes, réactifs et conviviaux avec passion et précision. Dédié à la construction de solutions numériques créatives et fiables qui ont un impact réel. J'aime transformer des idées complexes en applications web évolutives, avec un accent fort sur la fourniture d'expériences utilisateur fluides, le maintien d'une excellente interface utilisateur/expérience utilisateur et l'écriture de code propre et maintenable."
+                      ? "Créant des sites web modernes, réactifs et conviviaux avec passion et précision. Dédié à la création de solutions numériques personnalisées, créatives et fiables qui ont un réel impact. J’apprécie de transformer des idées complexes en applications évolutives, en me concentrant sur l’écriture d’un code propre et sur le maintien à jour avec les dernières technologies. Offrant d’excellentes expériences utilisateur."
                       : currentLanguage === 'AR'
-                        ? 'أقوم بإنشاء مواقع ويب عصرية وسريعة الاستجابة وسهلة الاستخدام بشغف ودقة. ملتزم ببناء حلول رقمية إبداعية وموثوقة يكون لها تأثير حقيقي. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز الشديد على تقديم تجارب مستخدم سلسة، والحفاظ على واجهة مستخدم وتجربة مستخدم ممتازة، وكتابة كود نظيف وسهل الصيانة.'
+                        ? 'أصمّم مواقع ويب عصرية، سريعة الاستجابة، وسهلة الاستخدام بشغف ودقة. ألتزم بتطوير حلول رقمية مخصصة، مبتكرة وموثوقة، تحدث فرقًا حقيقيًا. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز على تقديم تجربة مستخدم سلسة، والحفاظ على واجهة مستخدم فعالة ومتميزة، وكتابة كود نظيف وسهل الصيانة.'
+
                         : "Crafting modern, responsive, and user-friendly websites with passion and precision. Dedicated to building creative and reliable custom digital solutions that make a real impact. Enjoy transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. Delivering great user experiences."
                     }
                   </span>

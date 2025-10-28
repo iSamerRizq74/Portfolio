@@ -172,7 +172,7 @@ function App() {
           <div className="container mx-auto px-4 text-center">
             <p className="text-lg">
               {currentLanguage === 'AR' 
-                ? `سامر باهر رزق ${new Date().getFullYear()}`
+                ? `© ${new Date().getFullYear()} سامر باهر رزق`
                 : `© ${new Date().getFullYear()} Samer Baher Rizk`
               }
             </p>
