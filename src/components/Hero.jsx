@@ -163,7 +163,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
                     {currentLanguage === 'FR'
                       ? "Créant des sites web modernes, réactifs et conviviaux avec passion et précision. Dédié à la création de solutions numériques personnalisées, créatives et fiables qui ont un réel impact. J’apprécie de transformer des idées complexes en applications évolutives, en me concentrant sur l’écriture d’un code propre et sur le maintien à jour avec les dernières technologies. Offrant d’excellentes expériences utilisateur."
                       : currentLanguage === 'AR'
-                        ? 'أصمّم مواقع ويب عصرية، سريعة الاستجابة، وسهلة الاستخدام بشغف ودقة. ألتزم بتطوير حلول رقمية مخصصة، مبتكرة وموثوقة، تحدث فرقًا حقيقيًا. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز على تقديم تجربة مستخدم سلسة، والحفاظ على واجهة مستخدم فعالة ومتميزة، وكتابة كود نظيف وسهل الصيانة.'
+                        ? 'أصمّم مواقع ويب عصرية، سريعة الاستجابة، وسهلة الاستخدام بشغف ودقة. ألتزم بتطوير حلول رقمية مخصصة، مبتكرة وموثوقة، تحدث فرقًا حقيقيًا. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز على تقديم تجربة مستخدم سلسة، والحفاظ على واجهة مستخدم متميزة، وكتابة كود نظيف وسهل الصيانة.'
 
                         : "Crafting modern, responsive, and user-friendly websites with passion and precision. Dedicated to building creative and reliable custom digital solutions that make a real impact. Enjoy transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. Delivering great user experiences."
                     }
