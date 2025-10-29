@@ -206,12 +206,16 @@ const Work = ({ currentLanguage = 'EN' }) => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto max-h-[350px] object-contain"
-                    style={{ maxWidth: '100%' }}
+                    className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                    style={{ maxWidth: '100%', opacity: 0 }}
+                    onLoad={(e) => {
+                      e.target.style.opacity = 1;
+                    }}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = '/images/placeholder.jpg';
                     }}
+                    loading="eager"
                   />
                 </div>
               </div>
