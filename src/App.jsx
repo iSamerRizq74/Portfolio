@@ -168,7 +168,7 @@ function App() {
           />
         </Routes>
 
-        <footer className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white py-8">
+        <footer id="footer" className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white py-8">
           <div className="container mx-auto px-4 text-center">
             <p className="text-lg">
               {currentLanguage === 'AR' 
