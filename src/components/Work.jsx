@@ -1,7 +1,51 @@
-import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink, FiCode, FiLayers, FiSmartphone, FiMonitor, FiDatabase, FiShield, FiShoppingCart, FiMessageSquare, FiBarChart2 } from 'react-icons/fi';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiGithub, FiExternalLink, FiCode, FiLayers, FiSmartphone, FiMonitor, FiDatabase, FiShield, FiShoppingCart, FiMessageSquare, FiBarChart2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 const Work = ({ currentLanguage = 'EN' }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const nextProject = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+    );
+    // Reset the auto-advance timer whenever user interacts
+    resetAutoAdvance();
+  };
+  
+  // Auto-advance functionality
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const timer = setTimeout(() => {
+      nextProject();
+    }, 5000); // 5 seconds
+    
+    // Clean up timer on component unmount or when dependencies change
+    return () => clearTimeout(timer);
+  }, [currentIndex, isMobile]);
+  
+  // Reset auto-advance timer on user interaction
+  const resetAutoAdvance = () => {
+    // The effect will automatically restart the timer when currentIndex changes
+  };
+
+  const prevProject = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
+    );
+  };
   const projects = [
     {
       id: 1,
@@ -190,16 +234,37 @@ const Work = ({ currentLanguage = 'EN' }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: project.id * 0.1 }}
-              className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
+        <div className="relative">
+          {isMobile && (
+            <>
+              <button
+                onClick={prevProject}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 p-1.5 rounded-full bg-gray-200/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors shadow-md"
+                aria-label="Previous project"
+              >
+                <FiChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextProject}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 p-1.5 rounded-full bg-gray-200/80 dark:bg-gray-700/80 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors shadow-md"
+                aria-label="Next project"
+              >
+                <FiChevronRight className="w-5 h-5" />
+              </button>
+            </>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {!isMobile ? (
+              projects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: project.id * 0.1 }}
+                  className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
               {/* Project Image */}
               <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
                 <div className="w-full flex items-center justify-center p-0">
@@ -254,8 +319,77 @@ const Work = ({ currentLanguage = 'EN' }) => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+                </motion.div>
+              ))
+            ) : (
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3 }}
+                  className="col-span-1 md:col-span-2 lg:col-span-3"
+                >
+                  <motion.div
+                    className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  >
+                    {/* Project Image */}
+                    <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                      <div className="w-full flex items-center justify-center p-0">
+                        <img
+                          src={projects[currentIndex].image}
+                          alt={projects[currentIndex].title}
+                          className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                          style={{ maxWidth: '100%', opacity: 1 }}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/images/placeholder.jpg';
+                          }}
+                          loading="eager"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center mb-3">
+                        <span className="text-blue-500 mr-2">
+                          {projects[currentIndex].icon}
+                        </span>
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                          {projects[currentIndex].title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm">
+                        {typeof projects[currentIndex].description === 'object'
+                          ? projects[currentIndex].description[currentLanguage]
+                          : projects[currentIndex].description}
+                      </p>
+                      <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div className="w-full flex flex-row gap-3">
+                          <a
+                            href={projects[currentIndex].github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-800 dark:text-white hover:text-white bg-transparent hover:bg-blue-600/10 border border-blue-600/70 hover:border-blue-600 rounded-md transition-all duration-200"
+                          >
+                            <FiGithub className="mr-2" /> {currentLanguage === 'FR' ? 'Voir le code' : currentLanguage === 'AR' ? 'عرض الكود' : 'View Code'}
+                          </a>
+                          <a
+                            href={projects[currentIndex].demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-md transition-all duration-200 shadow-md hover:shadow-lg"
+                          >
+                            <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : currentLanguage === 'AR' ? 'عرض مباشر' : 'Live Demo'}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+            )}
+          </div>
         </div>
       </div>
     </section>
