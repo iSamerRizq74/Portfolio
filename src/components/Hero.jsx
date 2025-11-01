@@ -165,7 +165,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
                       : currentLanguage === 'AR'
                         ? 'أصمّم مواقع ويب عصرية، سريعة الاستجابة، وسهلة الاستخدام بشغف ودقة. ألتزم بتطوير حلول رقمية مخصصة، مبتكرة وموثوقة، تحدث فرقًا حقيقيًا. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز على تقديم تجربة مستخدم سلسة، وواجهة فعالة ومتميزة، وكتابة كود نظيف وسهل الصيانة.'
 
-                        : "Crafting modern, responsive, and user-friendly websites with passion and precision. Dedicated to building creative and reliable custom digital solutions that make a real impact. Enjoy transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. Delivering great user experiences."
+                        : <><span className="text-green-500 dark:text-green-400 font-medium">Crafting</span> modern, responsive, and user-friendly websites with passion and precision. <span className="text-green-500 dark:text-green-400 font-medium">Dedicated</span> to building creative and reliable custom digital solutions that make a real impact. <span className="text-green-500 dark:text-green-400 font-medium">Enjoy</span> transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. <span className="text-green-500 dark:text-green-400 font-medium">Delivering</span> great user experiences.</>
                     }
                   </span>
                 </p>
