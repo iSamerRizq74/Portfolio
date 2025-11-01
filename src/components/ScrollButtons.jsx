@@ -77,14 +77,14 @@ const ScrollButtons = () => {
     });
   };
 
-  // Show up arrow only in hero section
-  const showUpArrow = currentSection === 'hero';
+  // Show down arrow only in hero section
+  const showDownArrow = currentSection === 'hero';
   
-  // Show down arrow only in contact section or footer
-  const showDownArrow = currentSection === 'contact' || currentSection === 'footer';
+  // Show up arrow only in contact section or footer
+  const showUpArrow = currentSection === 'contact' || currentSection === 'footer';
   
-  // Always show the component if we're in a relevant section
-  const isVisible = showUpArrow || showDownArrow;
+  // Only show the component in hero (for down arrow) or contact/footer (for up arrow)
+  const isVisible = showDownArrow || showUpArrow;
   
   if (!isVisible) return null;
   
@@ -92,24 +92,24 @@ const ScrollButtons = () => {
     <div className="fixed right-4 sm:right-6 bottom-6 z-50">
       <div className="flex flex-col items-center space-y-3">
         {/* Down arrow - shows in hero section */}
-        {showUpArrow && (
+        {showDownArrow && (
           <button
             onClick={scrollToBottom}
             className="p-2 bg-blue-600/90 dark:bg-blue-700/90 text-white rounded-full shadow-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition-all duration-300 transform hover:scale-110 active:scale-95 touch-manipulation"
             aria-label="Scroll down"
           >
-            <FaArrowDown className="w-4 h-4" />
+            <FaArrowDown className="text-xl" />
           </button>
         )}
         
-        {/* Up arrow - shows in contact/footer */}
-        {showDownArrow && (
+        {/* Up arrow - shows in contact/footer sections */}
+        {showUpArrow && (
           <button
             onClick={scrollToTop}
             className="p-2 bg-blue-600/90 dark:bg-blue-700/90 text-white rounded-full shadow-lg hover:bg-blue-700 dark:hover:bg-blue-800 transition-all duration-300 transform hover:scale-110 active:scale-95 touch-manipulation"
             aria-label="Scroll to top"
           >
-            <FaArrowUp className="w-4 h-4" />
+            <FaArrowUp className="text-xl" />
           </button>
         )}
       </div>
