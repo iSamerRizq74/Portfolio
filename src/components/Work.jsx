@@ -275,20 +275,36 @@ const Work = ({ currentLanguage = 'EN' }) => {
               {/* Project Image */}
               <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
                 <div className="w-full flex items-center justify-center p-0">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                    style={{ maxWidth: '100%', opacity: 0 }}
-                    onLoad={(e) => {
-                      e.target.style.opacity = 1;
-                    }}
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = '/images/placeholder.jpg';
-                    }}
-                    loading="eager"
-                  />
+                  <picture>
+                    <source 
+                      srcSet={project.image.replace(/\.(jpg|jpeg|png)$/, '.webp')} 
+                      type="image/webp"
+                    />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                      style={{ 
+                        maxWidth: '100%', 
+                        opacity: 0,
+                        backgroundColor: '#f5f5f5',
+                        backgroundImage: 'linear-gradient(45deg, #e0e0e0 25%, #f0f0f0 25%, #f0f0f0 50%, #e0e0e0 50%, #e0e0e0 75%, #f0f0f0 75%, #f0f0f0 100%)',
+                        backgroundSize: '20px 20px'
+                      }}
+                      onLoad={(e) => {
+                        e.target.style.opacity = 1;
+                      }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/images/placeholder.jpg';
+                      }}
+                      loading={project.id < 2 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      fetchpriority={project.id < 2 ? 'high' : 'auto'}
+                      width="600"
+                      height="400"
+                    />
+                  </picture>
                 </div>
               </div>
               <div className="p-6">
@@ -364,23 +380,34 @@ const Work = ({ currentLanguage = 'EN' }) => {
                   {/* Project Image */}
                   <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
                     <div className="w-full flex items-center justify-center p-0">
-                      <img
-                        src={projects[currentIndex].image}
-                        alt={projects[currentIndex].title}
-                        className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                        style={{ 
-                          maxWidth: '100%', 
-                          opacity: 1,
-                          contentVisibility: 'auto'
-                        }}
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = '/images/placeholder.jpg';
-                        }}
-                        loading="lazy"
-                        decoding="async"
-                        fetchpriority={currentIndex < 2 ? 'high' : 'low'}
-                      />
+                      <picture>
+                        <source 
+                          srcSet={projects[currentIndex].image.replace(/\.(jpg|jpeg|png)$/, '.webp')} 
+                          type="image/webp"
+                        />
+                        <img
+                          src={projects[currentIndex].image}
+                          alt={projects[currentIndex].title}
+                          className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                          style={{ 
+                            maxWidth: '100%', 
+                            opacity: 1,
+                            contentVisibility: 'auto',
+                            backgroundColor: '#f5f5f5',
+                            backgroundImage: 'linear-gradient(45deg, #e0e0e0 25%, #f0f0f0 25%, #f0f0f0 50%, #e0e0e0 50%, #e0e0e0 75%, #f0f0f0 75%, #f0f0f0 100%)',
+                            backgroundSize: '20px 20px'
+                          }}
+                          loading={currentIndex < 2 ? 'eager' : 'lazy'}
+                          decoding="async"
+                          fetchpriority={currentIndex < 2 ? 'high' : 'auto'}
+                          width="600"
+                          height="400"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/images/placeholder.jpg';
+                          }}
+                        />
+                      </picture>
                     </div>
                   </div>
                   <div className="p-6">
