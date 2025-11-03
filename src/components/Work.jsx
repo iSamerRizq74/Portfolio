@@ -2,11 +2,48 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiCode, FiLayers, FiSmartphone, FiMonitor, FiDatabase, FiShield, FiShoppingCart, FiMessageSquare, FiBarChart2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useState, useEffect, useCallback } from 'react';
 
+// Function to preload images
+const preloadImages = (imageUrls) => {
+  if (typeof window !== 'undefined') {
+    imageUrls.forEach(url => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = url;
+      link.fetchPriority = 'high';
+      document.head.appendChild(link);
+    });
+  }
+};
+
 const Work = ({ currentLanguage = 'EN' }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  
+  // Preload all project images on component mount
+  useEffect(() => {
+    if (projects && projects.length > 0) {
+      // Preload all project images for both desktop and mobile
+      const imageUrls = projects.map(project => project.image);
+      preloadImages(imageUrls);
+      
+      // Also preload next and previous images for mobile carousel
+      const preloadNextPrev = () => {
+        const nextIndex = (currentIndex + 1) % projects.length;
+        const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
+        
+        const nextImg = new Image();
+        nextImg.src = projects[nextIndex].image;
+        
+        const prevImg = new Image();
+        prevImg.src = projects[prevIndex].image;
+      };
+      
+      preloadNextPrev();
+    }
+  }, [currentIndex]); // Add currentIndex to dependency array to preload on slide change
 
   // Debounce resize handler
   useEffect(() => {
@@ -225,18 +262,22 @@ const Work = ({ currentLanguage = 'EN' }) => {
   ];
 
   return (
-    <section id="work" className="py-12 sm:py-16 bg-[#E6E6E6] dark:bg-gray-800/60 transition-colors duration-300">
+    <section id="work" className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            {currentLanguage === 'FR' ? 'Projets' : currentLanguage === 'AR' ? 'مشاريعي' : 'Projects'}
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            {currentLanguage === 'FR' 
+              ? 'Mes Projets' 
+              : currentLanguage === 'AR' 
+                ? 'مشاريعي' 
+                : 'My Work'}
           </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             {currentLanguage === 'FR'
-              ? 'Une sélection de mes projets récents et travaux personnels.'
+              ? 'Une sélection de mes projets récents et personnels.'
               : currentLanguage === 'AR'
-                ? 'مجموعة من مشاريعي الحديثة والأعمال الشخصية'
+                ? 'اختيار من مشاريعي الشخصية والأخيرة.'
                 : 'A selection of my recent work and personal projects.'}
           </p>
         </div>
@@ -269,59 +310,47 @@ const Work = ({ currentLanguage = 'EN' }) => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: project.id * 0.1 }}
                   className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
-              {/* Project Image */}
-              <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
-                <div className="w-full flex items-center justify-center p-0">
-                  <picture>
-                    <source 
-                      srcSet={project.image.replace(/\.(jpg|jpeg|png)$/, '.webp')} 
-                      type="image/webp"
-                    />
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                      style={{ 
-                        maxWidth: '100%', 
-                        opacity: 0,
-                        backgroundColor: '#f5f5f5',
-                        backgroundImage: 'linear-gradient(45deg, #e0e0e0 25%, #f0f0f0 25%, #f0f0f0 50%, #e0e0e0 50%, #e0e0e0 75%, #f0f0f0 75%, #f0f0f0 100%)',
-                        backgroundSize: '20px 20px'
-                      }}
-                      onLoad={(e) => {
-                        e.target.style.opacity = 1;
-                      }}
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = '/images/placeholder.jpg';
-                      }}
-                      loading={project.id < 2 ? 'eager' : 'lazy'}
-                      decoding="async"
-                      fetchpriority={project.id < 2 ? 'high' : 'auto'}
-                      width="600"
-                      height="400"
-                    />
-                  </picture>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-center mb-3">
-                  <span className="text-blue-500 mr-2">
-                    {project.icon}
-                  </span>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    {project.title}
-                  </h3>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">
-                  {typeof project.description === 'object'
-                    ? project.description[currentLanguage]
-                    : project.description}
-                </p>
-                <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                  {/* Project Image */}
+                  <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                    <div className="w-full flex items-center justify-center p-0">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                        style={{ 
+                          maxWidth: '100%',
+                          backgroundColor: '#f5f5f5',
+                          opacity: 1
+                        }}
+                        loading="eager"
+                        decoding="sync"
+                        fetchpriority="high"
+                        width="600"
+                        height="400"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = '/images/placeholder.jpg';
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center mb-3">
+                      <span className="text-blue-500 mr-2">
+                        {project.icon}
+                      </span>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        {project.title}
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      {typeof project.description === 'object'
+                        ? project.description[currentLanguage]
+                        : project.description}
+                    </p>
+                    <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
                   <div className="w-full flex flex-row gap-3">
                     <a
                       href={project.github}
@@ -380,34 +409,25 @@ const Work = ({ currentLanguage = 'EN' }) => {
                   {/* Project Image */}
                   <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
                     <div className="w-full flex items-center justify-center p-0">
-                      <picture>
-                        <source 
-                          srcSet={projects[currentIndex].image.replace(/\.(jpg|jpeg|png)$/, '.webp')} 
-                          type="image/webp"
-                        />
-                        <img
-                          src={projects[currentIndex].image}
-                          alt={projects[currentIndex].title}
-                          className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                          style={{ 
-                            maxWidth: '100%', 
-                            opacity: 1,
-                            contentVisibility: 'auto',
-                            backgroundColor: '#f5f5f5',
-                            backgroundImage: 'linear-gradient(45deg, #e0e0e0 25%, #f0f0f0 25%, #f0f0f0 50%, #e0e0e0 50%, #e0e0e0 75%, #f0f0f0 75%, #f0f0f0 100%)',
-                            backgroundSize: '20px 20px'
-                          }}
-                          loading={currentIndex < 2 ? 'eager' : 'lazy'}
-                          decoding="async"
-                          fetchpriority={currentIndex < 2 ? 'high' : 'auto'}
-                          width="600"
-                          height="400"
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/images/placeholder.jpg';
-                          }}
-                        />
-                      </picture>
+                      <img
+                        src={projects[currentIndex].image}
+                        alt={projects[currentIndex].title}
+                        className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                        style={{ 
+                          maxWidth: '100%',
+                          backgroundColor: '#f5f5f5',
+                          opacity: 1
+                        }}
+                        loading="eager"
+                        decoding="sync"
+                        fetchpriority="high"
+                        width="600"
+                        height="400"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = '/images/placeholder.jpg';
+                        }}
+                      />
                     </div>
                   </div>
                   <div className="p-6">
