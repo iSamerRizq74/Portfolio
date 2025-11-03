@@ -21,26 +21,26 @@ const Work = ({ currentLanguage = 'EN' }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
-  
+
   // Preload all project images on component mount
   useEffect(() => {
     if (projects && projects.length > 0) {
       // Preload all project images for both desktop and mobile
       const imageUrls = projects.map(project => project.image);
       preloadImages(imageUrls);
-      
+
       // Also preload next and previous images for mobile carousel
       const preloadNextPrev = () => {
         const nextIndex = (currentIndex + 1) % projects.length;
         const prevIndex = (currentIndex - 1 + projects.length) % projects.length;
-        
+
         const nextImg = new Image();
         nextImg.src = projects[nextIndex].image;
-        
+
         const prevImg = new Image();
         prevImg.src = projects[prevIndex].image;
       };
-      
+
       preloadNextPrev();
     }
   }, [currentIndex]); // Add currentIndex to dependency array to preload on slide change
@@ -54,10 +54,10 @@ const Work = ({ currentLanguage = 'EN' }) => {
         setIsMobile(window.innerWidth < 768);
       }, 100);
     };
-    
+
     // Initial check
     setIsMobile(window.innerWidth < 768);
-    
+
     window.addEventListener('resize', handleResize, { passive: true });
     return () => {
       clearTimeout(timeoutId);
@@ -262,14 +262,14 @@ const Work = ({ currentLanguage = 'EN' }) => {
   ];
 
   return (
-    <section id="work" className="py-20 bg-gray-50 dark:bg-gray-800/60">
+    <section id="work" className="pt-14 pb-8 md:py-20 bg-gray-50 dark:bg-gray-800/60">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {currentLanguage === 'FR' 
-              ? 'Mes Projets' 
-              : currentLanguage === 'AR' 
-                ? 'مشاريعي' 
+            {currentLanguage === 'FR'
+              ? 'Mes Projets'
+              : currentLanguage === 'AR'
+                ? 'مشاريعي'
                 : 'My Work'}
           </h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto mb-6"></div>
@@ -301,7 +301,7 @@ const Work = ({ currentLanguage = 'EN' }) => {
               </button>
             </>
           )}
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {!isMobile ? (
               projects.map((project) => (
@@ -319,7 +319,7 @@ const Work = ({ currentLanguage = 'EN' }) => {
                         src={project.image}
                         alt={project.title}
                         className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                        style={{ 
+                        style={{
                           maxWidth: '100%',
                           backgroundColor: '#f5f5f5',
                           opacity: 1
@@ -351,94 +351,94 @@ const Work = ({ currentLanguage = 'EN' }) => {
                         : project.description}
                     </p>
                     <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
-                  <div className="w-full flex flex-row gap-3">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-800 dark:text-white hover:text-white bg-transparent hover:bg-blue-600/10 border border-blue-600/70 hover:border-blue-600 rounded-md transition-all duration-200"
-                    >
-                      <FiGithub className="mr-2" /> {currentLanguage === 'FR' ? 'Voir le code' : currentLanguage === 'AR' ? 'عرض الكود' : 'View Code'}
-                    </a>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-md transition-all duration-200 shadow-md hover:shadow-lg"
-                    >
-                      <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : currentLanguage === 'AR' ? 'عرض مباشر' : 'Live Demo'}
-                    </a>
+                      <div className="w-full flex flex-row gap-3">
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-800 dark:text-white hover:text-white bg-transparent hover:bg-blue-600/10 border border-blue-600/70 hover:border-blue-600 rounded-md transition-all duration-200"
+                        >
+                          <FiGithub className="mr-2" /> {currentLanguage === 'FR' ? 'Voir le code' : currentLanguage === 'AR' ? 'عرض الكود' : 'View Code'}
+                        </a>
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-md transition-all duration-200 shadow-md hover:shadow-lg"
+                        >
+                          <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : currentLanguage === 'AR' ? 'عرض مباشر' : 'Live Demo'}
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
                 </motion.div>
               ))
             ) : (
               <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ 
-                  opacity: 1, 
-                  x: 0,
-                  transition: { 
-                    type: 'tween',
-                    ease: 'easeOut',
-                    duration: 0.3
-                  }
-                }}
-                exit={{ 
-                  opacity: 0, 
-                  x: -100,
-                  transition: {
-                    type: 'tween',
-                    ease: 'easeIn',
-                    duration: 0.2
-                  }
-                }}
-                className="col-span-1 md:col-span-2 lg:col-span-3 will-change-transform"
-                style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <div 
-                  className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                  style={{ transform: 'translateZ(0)' }}
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                      type: 'tween',
+                      ease: 'easeOut',
+                      duration: 0.3
+                    }
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: -100,
+                    transition: {
+                      type: 'tween',
+                      ease: 'easeIn',
+                      duration: 0.2
+                    }
+                  }}
+                  className="col-span-1 md:col-span-2 lg:col-span-3 will-change-transform"
+                  style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 >
-                  {/* Project Image */}
-                  <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
-                    <div className="w-full flex items-center justify-center p-0">
-                      <img
-                        src={projects[currentIndex].image}
-                        alt={projects[currentIndex].title}
-                        className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                        style={{ 
-                          maxWidth: '100%',
-                          backgroundColor: '#f5f5f5',
-                          opacity: 1
-                        }}
-                        loading="eager"
-                        decoding="sync"
-                        fetchpriority="high"
-                        width="600"
-                        height="400"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = '/images/placeholder.jpg';
-                        }}
-                      />
+                  <div
+                    className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    style={{ transform: 'translateZ(0)' }}
+                  >
+                    {/* Project Image */}
+                    <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                      <div className="w-full flex items-center justify-center p-0">
+                        <img
+                          src={projects[currentIndex].image}
+                          alt={projects[currentIndex].title}
+                          className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                          style={{
+                            maxWidth: '100%',
+                            backgroundColor: '#f5f5f5',
+                            opacity: 1
+                          }}
+                          loading="eager"
+                          decoding="sync"
+                          fetchpriority="high"
+                          width="600"
+                          height="400"
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = '/images/placeholder.jpg';
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center mb-3">
-                      <span className="text-blue-500 mr-2">
-                        {projects[currentIndex].icon}
-                      </span>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {projects[currentIndex].title}
-                      </h3>
-                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center mb-3">
+                        <span className="text-blue-500 mr-2">
+                          {projects[currentIndex].icon}
+                        </span>
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                          {projects[currentIndex].title}
+                        </h3>
+                      </div>
                       <p className="text-gray-600 dark:text-gray-300 text-sm">
                         {typeof projects[currentIndex].description === 'object'
                           ? projects[currentIndex].description[currentLanguage]
@@ -463,11 +463,11 @@ const Work = ({ currentLanguage = 'EN' }) => {
                             <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : currentLanguage === 'AR' ? 'عرض مباشر' : 'Live Demo'}
                           </a>
                         </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                </motion.div>
+              </AnimatePresence>
             )}
           </div>
         </div>

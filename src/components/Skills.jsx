@@ -53,7 +53,7 @@ const Skills = ({ currentLanguage = 'EN' }) => {
 
 
   return (
-    <section id="skills" className="py-20 bg-[#CCCCCC] dark:bg-gray-900 transition-colors duration-300">
+    <section id="skills" className="pt-14 pb-8 md:py-20 bg-[#CCCCCC] dark:bg-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -61,11 +61,11 @@ const Skills = ({ currentLanguage = 'EN' }) => {
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            {currentLanguage === 'FR' 
+            {currentLanguage === 'FR'
               ? 'Technologies et outils que j\'utilise pour créer des applications web modernes et performantes.'
               : currentLanguage === 'AR'
-              ? 'التقنيات والأدوات التي أستخدمها لبناء تطبيقات ويب حديثة وعالية الأداء'
-              : 'Technologies and tools I use to create modern and performant web applications.'}
+                ? 'التقنيات والأدوات التي أستخدمها لبناء تطبيقات ويب حديثة وعالية الأداء'
+                : 'Technologies and tools I use to create modern and performant web applications.'}
           </p>
         </div>
 
