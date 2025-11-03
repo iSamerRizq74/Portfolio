@@ -12,6 +12,18 @@ const ScrollButtons = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setCurrentSection(entry.target.id || 'footer');
+        } else if (entry.target.id === 'hero') {
+          // When hero section is no longer in view, clear the current section
+          // unless we're already in contact or footer
+          setCurrentSection(prev => 
+            prev === 'contact' || prev === 'footer' ? prev : ''
+          );
+        } else if (entry.target.id === 'contact' || entry.target === document.querySelector('footer')) {
+          // When contact or footer is no longer in view, clear the current section
+          // unless we're in the hero section
+          setCurrentSection(prev => 
+            prev === 'hero' ? prev : ''
+          );
         }
       });
     };
@@ -80,13 +92,11 @@ const ScrollButtons = () => {
   // Show down arrow only in hero section
   const showDownArrow = currentSection === 'hero';
   
-  // Show up arrow only in contact section or footer
+  // Show up arrow in both contact and footer sections
   const showUpArrow = currentSection === 'contact' || currentSection === 'footer';
   
-  // Only show the component in hero (for down arrow) or contact/footer (for up arrow)
-  const isVisible = showDownArrow || showUpArrow;
-  
-  if (!isVisible) return null;
+  // Don't show any arrows in other sections
+  if (!showDownArrow && !showUpArrow) return null;
   
   return (
     <div className="fixed right-4 sm:right-6 bottom-6 z-50">
