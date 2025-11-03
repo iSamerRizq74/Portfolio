@@ -1,50 +1,57 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiCode, FiLayers, FiSmartphone, FiMonitor, FiDatabase, FiShield, FiShoppingCart, FiMessageSquare, FiBarChart2, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const Work = ({ currentLanguage = 'EN' }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
+  // Debounce resize handler
   useEffect(() => {
+    let timeoutId = null;
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+      }, 100);
     };
     
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Initial check
+    setIsMobile(window.innerWidth < 768);
+    
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
-  const nextProject = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === projects.length - 1 ? 0 : prevIndex + 1
-    );
-    // Reset the auto-advance timer whenever user interacts
-    resetAutoAdvance();
-  };
-  
-  // Auto-advance functionality
-  useEffect(() => {
-    if (!isMobile) return;
-    
-    const timer = setTimeout(() => {
-      nextProject();
-    }, 5000); // 5 seconds
-    
-    // Clean up timer on component unmount or when dependencies change
-    return () => clearTimeout(timer);
-  }, [currentIndex, isMobile]);
-  
-  // Reset auto-advance timer on user interaction
-  const resetAutoAdvance = () => {
-    // The effect will automatically restart the timer when currentIndex changes
+  const nextProject = useCallback(() => {
+    setCurrentIndex(prev => (prev === projects.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  const prevProject = useCallback(() => {
+    setCurrentIndex(prev => (prev === 0 ? projects.length - 1 : prev - 1));
+  }, []);
+
+  // Touch event handlers for swipe
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const prevProject = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-    );
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) {
+      nextProject();
+    }
+    if (touchStart - touchEnd < -50) {
+      prevProject();
+    }
   };
   const projects = [
     {
@@ -322,43 +329,69 @@ const Work = ({ currentLanguage = 'EN' }) => {
                 </motion.div>
               ))
             ) : (
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.3 }}
-                  className="col-span-1 md:col-span-2 lg:col-span-3"
+              <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ 
+                  opacity: 1, 
+                  x: 0,
+                  transition: { 
+                    type: 'tween',
+                    ease: 'easeOut',
+                    duration: 0.3
+                  }
+                }}
+                exit={{ 
+                  opacity: 0, 
+                  x: -100,
+                  transition: {
+                    type: 'tween',
+                    ease: 'easeIn',
+                    duration: 0.2
+                  }
+                }}
+                className="col-span-1 md:col-span-2 lg:col-span-3 will-change-transform"
+                style={{ transformStyle: 'preserve-3d', backfaceVisibility: 'hidden' }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <div 
+                  className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  style={{ transform: 'translateZ(0)' }}
                 >
-                  <motion.div
-                    className="bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                  >
-                    {/* Project Image */}
-                    <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
-                      <div className="w-full flex items-center justify-center p-0">
-                        <img
-                          src={projects[currentIndex].image}
-                          alt={projects[currentIndex].title}
-                          className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
-                          style={{ maxWidth: '100%', opacity: 1 }}
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = '/images/placeholder.jpg';
-                          }}
-                          loading="eager"
-                        />
-                      </div>
+                  {/* Project Image */}
+                  <div className="relative w-full bg-gray-100 dark:bg-gray-900 overflow-hidden">
+                    <div className="w-full flex items-center justify-center p-0">
+                      <img
+                        src={projects[currentIndex].image}
+                        alt={projects[currentIndex].title}
+                        className="w-full h-auto max-h-[350px] object-contain transition-opacity duration-300"
+                        style={{ 
+                          maxWidth: '100%', 
+                          opacity: 1,
+                          contentVisibility: 'auto'
+                        }}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = '/images/placeholder.jpg';
+                        }}
+                        loading="lazy"
+                        decoding="async"
+                        fetchpriority={currentIndex < 2 ? 'high' : 'low'}
+                      />
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center mb-3">
-                        <span className="text-blue-500 mr-2">
-                          {projects[currentIndex].icon}
-                        </span>
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                          {projects[currentIndex].title}
-                        </h3>
-                      </div>
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center mb-3">
+                      <span className="text-blue-500 mr-2">
+                        {projects[currentIndex].icon}
+                      </span>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        {projects[currentIndex].title}
+                      </h3>
+                    </div>
                       <p className="text-gray-600 dark:text-gray-300 text-sm">
                         {typeof projects[currentIndex].description === 'object'
                           ? projects[currentIndex].description[currentLanguage]
@@ -383,11 +416,11 @@ const Work = ({ currentLanguage = 'EN' }) => {
                             <FiExternalLink className="mr-2" /> {currentLanguage === 'FR' ? 'Démo en direct' : currentLanguage === 'AR' ? 'عرض مباشر' : 'Live Demo'}
                           </a>
                         </div>
-                      </div>
                     </div>
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
             )}
           </div>
         </div>
