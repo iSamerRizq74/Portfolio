@@ -5,26 +5,6 @@ import { useState, useEffect } from 'react';
 
 const About = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
-  const [showCV, setShowCV] = useState(false);
-
-  const handleViewCV = () => {
-    setShowCV(true);
-  };
-
-  const handleCloseCV = () => {
-    setShowCV(false);
-  };
-
-  useEffect(() => {
-    if (showCV) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [showCV]);
 
   const container = {
     hidden: { opacity: 0 },
@@ -145,13 +125,15 @@ const About = ({ currentLanguage = 'EN' }) => {
                       : 'Discover my professional journey, skills, and experience in detail.'}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-xs">
-                  <button
-                    onClick={handleViewCV}
+                  <a
+                    href="/SamerCV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group flex-1 flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
                   >
                     <FiEye className="mr-2 group-hover:scale-110 transition-transform" />
                     {currentLanguage === 'FR' ? 'Voir' : currentLanguage === 'AR' ? 'عرض' : 'View'}
-                  </button>
+                  </a>
                   <a
                     href="/SamerCV.pdf"
                     download="SamerBaherRizk_CV.pdf"
@@ -165,43 +147,6 @@ const About = ({ currentLanguage = 'EN' }) => {
             </div>
           </motion.div>
 
-          {/* CV Modal */}
-          <AnimatePresence>
-            {showCV && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-                onClick={handleCloseCV}
-              >
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  className="relative w-full max-w-5xl h-[90vh] bg-gray-900 border border-gray-700 rounded-xl overflow-hidden shadow-2xl"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <button
-                    onClick={handleCloseCV}
-                    className="absolute top-4 right-4 z-10 p-2 bg-gray-800/80 hover:bg-gray-700/90 text-gray-300 hover:text-white rounded-full transition-all duration-300 hover:scale-110"
-                    aria-label="Close CV"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                  <div className="w-full h-full">
-                    <embed
-                      src="/SamerCV.pdf#toolbar=1&navpanes=0&view=FitH"
-                      type="application/pdf"
-                      className="w-full h-full"
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           {/* Call to Action */}
           <motion.div
