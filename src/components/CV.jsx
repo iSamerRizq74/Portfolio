@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiDownload } from 'react-icons/fi';
+import { FiDownload, FiExternalLink } from 'react-icons/fi';
 
 const CV = () => {
   const container = {
@@ -73,10 +73,17 @@ const CV = () => {
               allowFullScreen
             />
           </div>
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              onClick={() => window.open('/SamerCV.pdf', '_blank', 'noopener,noreferrer')}
+              className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-medium rounded-full hover:from-green-700 hover:to-emerald-700 transition-all duration-300 flex items-center justify-center group hover:shadow-lg hover:shadow-green-500/20"
+            >
+              <FiExternalLink className="mr-2 group-hover:animate-pulse text-white" />
+              View CV
+            </button>
             <button
               onClick={handleDownload}
-              className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium rounded-full hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 flex items-center group hover:shadow-lg hover:shadow-indigo-500/20"
+              className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium rounded-full hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center group hover:shadow-lg hover:shadow-indigo-500/20"
             >
               <FiDownload className="mr-2 group-hover:animate-bounce text-white" />
               Download CV
