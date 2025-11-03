@@ -12,18 +12,9 @@ const ScrollButtons = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setCurrentSection(entry.target.id || 'footer');
-        } else if (entry.target.id === 'hero') {
-          // When hero section is no longer in view, clear the current section
-          // unless we're already in contact or footer
-          setCurrentSection(prev => 
-            prev === 'contact' || prev === 'footer' ? prev : ''
-          );
         } else if (entry.target.id === 'contact' || entry.target === document.querySelector('footer')) {
-          // When contact or footer is no longer in view, clear the current section
-          // unless we're in the hero section
-          setCurrentSection(prev => 
-            prev === 'hero' ? prev : ''
-          );
+          // Clear section when leaving contact or footer
+          setCurrentSection(prev => prev === 'hero' ? 'hero' : '');
         }
       });
     };
@@ -31,7 +22,7 @@ const ScrollButtons = () => {
     observer.current = new IntersectionObserver(handleIntersect, {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5
+      threshold: 0.1
     });
 
     // Add an initial check for the current section
@@ -39,13 +30,14 @@ const ScrollButtons = () => {
       const hero = document.getElementById('hero');
       const contact = document.getElementById('contact');
       const footer = document.querySelector('footer');
+      const scrollPosition = window.scrollY + (window.innerHeight / 2);
       
-      if (hero && window.scrollY < hero.offsetHeight) {
-        setCurrentSection('hero');
-      } else if (contact && contact.getBoundingClientRect().top <= window.innerHeight / 2) {
-        setCurrentSection('contact');
-      } else if (footer && footer.getBoundingClientRect().top <= window.innerHeight) {
+      if (footer && scrollPosition >= footer.offsetTop) {
         setCurrentSection('footer');
+      } else if (contact && scrollPosition >= contact.offsetTop) {
+        setCurrentSection('contact');
+      } else if (hero) {
+        setCurrentSection('hero');
       }
     };
 
@@ -92,7 +84,7 @@ const ScrollButtons = () => {
   // Show down arrow only in hero section
   const showDownArrow = currentSection === 'hero';
   
-  // Show up arrow in both contact and footer sections
+  // Show up arrow only in contact and footer sections
   const showUpArrow = currentSection === 'contact' || currentSection === 'footer';
   
   // Don't show any arrows in other sections
