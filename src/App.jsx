@@ -29,6 +29,8 @@ function App() {
   const [showWhatsAppModal, setShowWhatsAppModal] = useState(false);
   const [showTelegramModal, setShowTelegramModal] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState('EN');
+  const [rating, setRating] = useState(0);
+  const [hoveredStar, setHoveredStar] = useState(0);
 
   // Initialize Google Analytics
   useEffect(() => {
@@ -104,7 +106,7 @@ function App() {
 
     window.addEventListener('openWhatsAppModal', handleWhatsAppModalEvent);
     window.addEventListener('openTelegramModal', handleTelegramModalEvent);
-    
+
     return () => {
       window.removeEventListener('openWhatsAppModal', handleWhatsAppModalEvent);
       window.removeEventListener('openTelegramModal', handleTelegramModalEvent);
@@ -114,6 +116,14 @@ function App() {
   // Close modals
   const closeWhatsAppModal = () => setShowWhatsAppModal(false);
   const closeTelegramModal = () => setShowTelegramModal(false);
+
+  // Handle star rating
+  const handleStarClick = useCallback((selectedRating) => {
+    if (rating === 0) { // Only allow setting the rating if it hasn't been set yet
+      setRating(selectedRating);
+      // You can add additional logic here to save the rating to your backend
+    }
+  }, [rating]);
 
   if (isLoading) {
     return (
@@ -154,8 +164,8 @@ function App() {
         <SideNavigation />
 
         <Routes>
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               <>
                 <Hero currentLanguage={currentLanguage} />
@@ -164,77 +174,70 @@ function App() {
                 <Work currentLanguage={currentLanguage} />
                 <Contact currentLanguage={currentLanguage} />
               </>
-            } 
+            }
           />
         </Routes>
 
-        <footer id="footer" className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white py-8">
+        <footer id="footer" className="bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-800 dark:to-gray-700 text-white pt-4 pb-3">
           <div className="container mx-auto px-4 text-center">
-            <p className="text-lg">
-              {currentLanguage === 'AR' 
-                ? `© ${new Date().getFullYear()} سامر باهر رزق`
-                : `© ${new Date().getFullYear()} Samer Baher Rizk`
-              }
-            </p>
-            <p className="text-gray-200 dark:text-gray-400 mb-6">
-              {currentLanguage === 'FR' 
-                ? 'Tous droits réservés.' 
-                : currentLanguage === 'AR' 
-                ? 'جميع الحقوق محفوظة' 
-                : 'All rights reserved.'
-              }
-            </p>
-            <div className="flex justify-center space-x-6">
-              <a
-                href="https://github.com/isamerrizq74"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
-                aria-label="GitHub"
-              >
-                <FaGithub className="h-6 w-6" />
-              </a>
-              <a
-                href="https://linkedin.com/in/isamerrizq74"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-blue-500 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="h-6 w-6" />
-              </a>
-              <a
-                href="https://facebook.com/isamerrizq74"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-blue-600 transition-colors"
-                aria-label="Facebook"
-              >
-                <FaFacebook className="h-6 w-6" />
-              </a>
-              <a
-                href="https://instagram.com/isamerrizq74"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-pink-500 transition-colors"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="h-6 w-6" />
-              </a>
-              <button
-                onClick={handleWhatsAppClick}
-                className="text-gray-300 hover:text-green-500 transition-colors"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp className="h-6 w-6" />
-              </button>
-              <button
-                onClick={() => setShowTelegramModal(true)}
-                className="text-gray-300 hover:text-blue-400 transition-colors"
-                aria-label="Telegram"
-              >
-                <FaTelegram className="h-6 w-6" />
-              </button>
+            {/* Rating Section */}
+            <div className="mb-2">
+              <p className="text-md mb-2 text-gray-200">
+                {currentLanguage === 'AR'
+                  ? 'كيف تقيم التجربة؟'
+                  : currentLanguage === 'FR'
+                    ? 'Comment évaluez-vous votre expérience ?'
+                    : 'How do you rate the experience?'}
+              </p>
+
+              {/* 5-Star Rating */}
+              <div className="flex justify-center items-center mb-2">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <button
+                    key={star}
+                    className="star-btn"
+                    onClick={() => handleStarClick(star)}
+                    onMouseEnter={() => !rating && setHoveredStar(star)}
+                    onMouseLeave={() => !rating && setHoveredStar(0)}
+                  >
+                    <svg
+                      className={`w-8 h-8 mx-1 transition-colors duration-200 ${(hoveredStar >= star || rating >= star)
+                        ? 'text-yellow-400'
+                        : 'text-gray-400 hover:text-yellow-300'
+                        }`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+
+              {/* Thank You Message */}
+              {rating > 0 && (
+                <p className="text-green-300 text-sm mt-2">
+                  {currentLanguage === 'AR'
+                    ? 'شكراً للتقييم!'
+                    : currentLanguage === 'FR'
+                      ? 'Merci pour votre évaluation !'
+                      : 'Thank you for your rating!'}
+                </p>
+              )}
+            </div>
+
+            {/* Copyright Text */}
+            <div className="text-gray-100 text-center mb-6">
+              <p className="text-lg">© {new Date().getFullYear()} {currentLanguage === 'AR' ? 'سامر باهر رزق' : 'Samer Baher Rizk'}.</p>
+              <p className="mt-1">
+                {currentLanguage === 'AR'
+                  ? 'جميع الحقوق محفوظة'
+                  : currentLanguage === 'FR'
+                    ? 'Tous droits réservés'
+                    : 'All rights reserved.'
+                }
+              </p>
             </div>
           </div>
         </footer>
@@ -260,8 +263,8 @@ function App() {
                 <div className="p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {currentLanguage === 'AR' 
-                        ? 'تواصل عبر واتساب' 
+                      {currentLanguage === 'AR'
+                        ? 'تواصل عبر واتساب'
                         : 'Contact via WhatsApp'}
                     </h3>
                     <button
@@ -331,11 +334,11 @@ function App() {
               >
                 <div className="flex flex-col items-center text-center">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                    {currentLanguage === 'AR' 
-                      ? 'تواصل معي على تيليجرام' 
-                      : currentLanguage === 'FR' 
-                      ? 'Contactez-moi sur Telegram' 
-                      : 'Contact via Telegram'}
+                    {currentLanguage === 'AR'
+                      ? 'تواصل معي على تيليجرام'
+                      : currentLanguage === 'FR'
+                        ? 'Contactez-moi sur Telegram'
+                        : 'Contact via Telegram'}
                   </h3>
 
                   <div className="flex items-start space-x-4 bg-blue-100 dark:bg-blue-900/30 p-4 rounded-xl w-full mb-6">
@@ -366,21 +369,21 @@ function App() {
                       className="flex-1 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                     >
                       <FaTelegram className="w-5 h-5" />
-                      {currentLanguage === 'AR' 
-                        ? 'فتح تيليجرام' 
-                        : currentLanguage === 'FR' 
-                        ? 'Ouvrir Telegram' 
-                        : 'Open Telegram'}
+                      {currentLanguage === 'AR'
+                        ? 'فتح تيليجرام'
+                        : currentLanguage === 'FR'
+                          ? 'Ouvrir Telegram'
+                          : 'Open Telegram'}
                     </a>
                     <button
                       onClick={closeTelegramModal}
                       className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
                     >
-                      {currentLanguage === 'AR' 
-                        ? 'إلغاء' 
-                        : currentLanguage === 'FR' 
-                        ? 'Annuler' 
-                        : 'Cancel'}
+                      {currentLanguage === 'AR'
+                        ? 'إلغاء'
+                        : currentLanguage === 'FR'
+                          ? 'Annuler'
+                          : 'Cancel'}
                     </button>
                   </div>
                 </div>
