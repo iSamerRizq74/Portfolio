@@ -10,11 +10,12 @@ const ScrollButtons = () => {
   useEffect(() => {
     const handleIntersect = (entries) => {
       entries.forEach(entry => {
+        const sectionId = entry.target.id || 'footer';
         if (entry.isIntersecting) {
-          setCurrentSection(entry.target.id || 'footer');
-        } else if (entry.target.id === 'contact' || entry.target === document.querySelector('footer')) {
-          // Clear section when leaving contact or footer
-          setCurrentSection(prev => prev === 'hero' ? 'hero' : '');
+          setCurrentSection(sectionId);
+        } else if (sectionId === 'hero' || sectionId === 'contact' || sectionId === 'footer') {
+          // Clear section when leaving any tracked section
+          setCurrentSection('');
         }
       });
     };
