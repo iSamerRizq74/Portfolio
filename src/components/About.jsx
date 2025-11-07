@@ -88,7 +88,7 @@ const About = ({ currentLanguage = 'EN' }) => {
                     ? "Mon parcours en développement web a débuté il y a plusieurs années, au cours desquelles j’ai réalisé divers projets innovants, allant de sites pour petites entreprises à des plateformes complexes. Je m’attache toujours à relier design et fonctionnalité, en assurant des performances fluides et un code de haute qualité."
                     : currentLanguage === 'AR'
                       ? 'بدأت رحلتي في مجال تطوير الويب منذ عدة سنوات، وخلالها عملت على مجموعة متنوعة من المشاريع، من مواقع الشركات الصغيرة إلى المنصّات الإلكترونية المعقّدة. ركّز عملي على الربط بين التصميم والوظائف البرمجية، مع ضمان أداء سلس عبر جميع طبقات التطوير والحفاظ على جودة عالية في كتابة الكود.'
-                      : "My journey in web development began several years ago, during which I've worked on range of projects, from small business websites to complex web platforms. My work has focused on bridging design and functionality, ensuring smooth performance across all layers of development while maintaining high code quality."}
+                      : "My journey in web development began several years ago, during which I've worked on range of projects, from small business websites to complex platforms. My work has focused on bridging design and functionality, ensuring smooth performance across all layers of development while maintaining high code quality."}
                 </p>
                 <p className="max-w-2xl mx-auto">
                   {currentLanguage === 'FR'

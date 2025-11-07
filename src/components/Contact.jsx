@@ -29,12 +29,12 @@ const Contact = ({ currentLanguage = 'EN' }) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedItem(index);
-      
+
       // Clear any existing timeout
       if (copyTimeoutRef.current) {
         clearTimeout(copyTimeoutRef.current);
       }
-      
+
       // Reset the copied state after 2 seconds
       copyTimeoutRef.current = setTimeout(() => {
         setCopiedItem(null);
@@ -91,18 +91,6 @@ const Contact = ({ currentLanguage = 'EN' }) => {
 
   const socialLinks = [
     {
-      icon: FiGithub,
-      label: "GitHub",
-      href: "https://github.com/iSamerRizq74",
-      color: "#333333",
-    },
-    {
-      icon: FiLinkedin,
-      label: "LinkedIn",
-      href: "https://linkedin.com/in/samer-baher-rizk-237a942b5/",
-      color: "#0077B5",
-    },
-    {
       icon: FiFacebook,
       label: "Facebook",
       href: "https://facebook.com/iSamerRizq74",
@@ -120,6 +108,18 @@ const Contact = ({ currentLanguage = 'EN' }) => {
       href: "#whatsapp",
       color: "#25D366",
       onClick: handleWhatsAppClick
+    },
+    {
+      icon: FiLinkedin,
+      label: "LinkedIn",
+      href: "https://linkedin.com/in/samer-baher-rizk-237a942b5/",
+      color: "#0077B5",
+    },
+    {
+      icon: FiGithub,
+      label: "GitHub",
+      href: "https://github.com/iSamerRizq74",
+      color: "#333333",
     },
   ];
 
@@ -325,7 +325,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                 </h3>
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
-                    <div 
+                    <div
                       key={index}
                       className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-4 hover:shadow-lg transition-all duration-300"
                     >
@@ -355,6 +355,31 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Social Media Icons */}
+                <div className="mt-8">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+
+                  </h3>
+                  <div className="flex flex-wrap justify-center sm:justify-start gap-4">
+                    {socialLinks.map((social, index) => (
+                      <motion.a
+                        key={index}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={social.onClick || (() => { })}
+                        className={`p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-colors duration-300`}
+                        style={{ color: social.color }}
+                        whileHover={{ y: -3, scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-label={social.label}
+                      >
+                        <social.icon className="w-6 h-6" />
+                      </motion.a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

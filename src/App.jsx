@@ -228,7 +228,7 @@ function App() {
             </div>
 
             {/* Copyright Text */}
-            <div className="text-gray-100 text-center mb-6">
+            <div className="text-gray-200 text-center mb-6">
               <p className="text-lg">© {new Date().getFullYear()} {currentLanguage === 'AR' ? 'سامر باهر رزق' : 'Samer Baher Rizk'}.</p>
               <p className="mt-1">
                 {currentLanguage === 'AR'

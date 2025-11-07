@@ -133,7 +133,17 @@ const Hero = ({ currentLanguage = 'EN' }) => {
             {/* Name */}
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 w-[95%] max-w-3xl mx-auto text-center lg:text-left whitespace-nowrap"
-              variants={item}
+              initial={{ opacity: 0, y: -100 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 15,
+                  duration: 0.8
+                }
+              }}
             >
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 dark:from-blue-400 dark:via-purple-500 dark:to-pink-500 bg-clip-text text-transparent">
                 {currentLanguage === 'AR' ? 'سامر باهر رزق' : 'Samer Baher Rizk'}
@@ -142,8 +152,19 @@ const Hero = ({ currentLanguage = 'EN' }) => {
 
             {/* Title */}
             <motion.div
-              variants={prefersReducedMotion ? undefined : item}
               className="mb-4 sm:mb-6 w-[98%] max-w-5xl mx-auto"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 15,
+                  duration: 0.8,
+                  delay: 0.2
+                }
+              }}
             >
               <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold mb-2 text-center lg:text-left">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-purple-400">
