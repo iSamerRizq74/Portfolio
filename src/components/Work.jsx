@@ -45,6 +45,17 @@ const Work = ({ currentLanguage = 'EN' }) => {
     }
   }, [currentIndex]); // Add currentIndex to dependency array to preload on slide change
 
+  // Auto-swipe for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const autoSwipe = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
+    }, 5000); // Swipe every 5 seconds
+    
+    return () => clearInterval(autoSwipe);
+  }, [isMobile]);
+
   // Debounce resize handler
   useEffect(() => {
     let timeoutId = null;
