@@ -1,11 +1,14 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
 
 // Hero image path
 const heroImage = '/images/samer.jpg';
 
 const Hero = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const container = {
     hidden: { opacity: 0 },
@@ -54,6 +57,89 @@ const Hero = ({ currentLanguage = 'EN' }) => {
   };
 
   // Optimized scroll indicator animation for mobile
+  // Typing effect for the paragraph
+  useEffect(() => {
+    if (currentLanguage !== 'EN') return;
+
+    const paragraph = "Crafting modern, responsive, and user-friendly websites with passion and precision. Dedicated to building creative and reliable custom digital solutions that make a real impact. Enjoy transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. Delivering great user experiences.";
+
+    if (currentIndex < paragraph.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + paragraph[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 30); // Slightly faster typing speed (lower value = faster typing)
+
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, currentLanguage]);
+
+  // Reset animation when language changes
+  useEffect(() => {
+    setDisplayedText('');
+    setCurrentIndex(0);
+  }, [currentLanguage]);
+
+  // Function to render the animated paragraph with preserved styling
+  const renderAnimatedParagraph = () => {
+    if (currentLanguage !== 'EN') {
+      return null;
+    }
+
+    // Split the displayed text into parts to apply the colored words
+    const parts = [];
+    let currentText = displayedText;
+
+    // Define the colored words and their styles
+    const coloredWords = [
+      { word: 'Crafting', color: 'text-green-500 dark:text-green-400 font-medium' },
+      { word: 'Dedicated', color: 'text-green-500 dark:text-green-400 font-medium' },
+      { word: 'Enjoy', color: 'text-green-500 dark:text-green-400 font-medium' },
+      { word: 'Delivering', color: 'text-green-500 dark:text-green-400 font-medium' }
+    ];
+
+    // Process each colored word
+    for (const { word, color } of coloredWords) {
+      const index = currentText.indexOf(word);
+      if (index !== -1) {
+        // Add text before the colored word
+        if (index > 0) {
+          parts.push({
+            text: currentText.substring(0, index),
+            color: 'text-gray-800 dark:text-gray-300'
+          });
+        }
+
+        // Add the colored word
+        parts.push({
+          text: word,
+          color: color
+        });
+
+        // Update the remaining text
+        currentText = currentText.substring(index + word.length);
+      }
+    }
+
+    // Add any remaining text
+    if (currentText) {
+      parts.push({
+        text: currentText,
+        color: 'text-gray-800 dark:text-gray-300'
+      });
+    }
+
+    return (
+      <span className="inline">
+        {parts.map((part, index) => (
+          <span key={index} className={part.color}>
+            {part.text}
+          </span>
+        ))}
+        <span className="animate-pulse">|</span>
+      </span>
+    );
+  };
+
   const scrollIndicator = {
     hidden: { opacity: 0, y: 20 },
     show: {
@@ -186,7 +272,11 @@ const Hero = ({ currentLanguage = 'EN' }) => {
                       : currentLanguage === 'AR'
                         ? 'أصمّم مواقع ويب عصرية، سريعة الاستجابة، وسهلة الاستخدام بشغف ودقة. ألتزم بتطوير حلول رقمية مخصصة، مبتكرة وموثوقة، تحدث فرقًا حقيقيًا. أستمتع بتحويل الأفكار المعقدة إلى تطبيقات ويب قابلة للتطوير، مع التركيز على تقديم تجربة مستخدم سلسة، وواجهة فعالة ومتميزة، وكتابة كود نظيف وسهل الصيانة.'
 
-                        : <><span className="text-green-500 dark:text-green-400 font-medium">Crafting</span> modern, responsive, and user-friendly websites with passion and precision. <span className="text-green-500 dark:text-green-400 font-medium">Dedicated</span> to building creative and reliable custom digital solutions that make a real impact. <span className="text-green-500 dark:text-green-400 font-medium">Enjoy</span> transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. <span className="text-green-500 dark:text-green-400 font-medium">Delivering</span> great user experiences.</>
+                        : renderAnimatedParagraph() || (
+                          <>
+                            <span className="text-green-500 dark:text-green-400 font-medium">Crafting</span> modern, responsive, and user-friendly websites with passion and precision. <span className="text-green-500 dark:text-green-400 font-medium">Dedicated</span> to building creative and reliable custom digital solutions that make a real impact. <span className="text-green-500 dark:text-green-400 font-medium">Enjoy</span> transforming complex ideas into scalable applications, with focus on writing clean code and staying up-to-date with the latest technologies. <span className="text-green-500 dark:text-green-400 font-medium">Delivering</span> great user experiences.
+                          </>
+                        )
                     }
                   </span>
                 </p>

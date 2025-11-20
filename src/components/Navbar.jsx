@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { FiMenu, FiX, FiSun, FiMoon, FiDownload, FiChevronDown, FiGlobe } from "react-icons/fi";
 import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp, FaTelegram } from "react-icons/fa";
 
@@ -28,6 +28,15 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSocialMenuOpen, setIsSocialMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  
+  // Scroll progress for the progress bar
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+  
   const mobileMenuRef = useRef(null);
   const socialMenuRef = useRef(null);
   const languageMenuRef = useRef(null);
@@ -183,7 +192,12 @@ const Navbar = ({ darkMode, toggleDarkMode, currentLanguage, toggleLanguage }) =
           }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-12">
+          <div className="flex items-center justify-between h-12 mb-1">
+            {/* Scroll Progress Bar - Mobile Only */}
+            <motion.div 
+              className="md:hidden fixed left-0 right-0 top-[60px] h-1 bg-gradient-to-r from-blue-500 to-purple-600 origin-left w-full z-50"
+              style={{ scaleX }}
+            />
             {/* Logo */}
             <div className="flex-shrink-0">
               <a href="#home" className="block">
