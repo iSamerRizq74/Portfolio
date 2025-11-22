@@ -83,21 +83,21 @@ const About = ({ currentLanguage = 'EN' }) => {
                       ? "Développeur Full Stack passionné, diplômé de l'ITI et de la Faculté des Sciences Informatiques de Mansoura, avec une expérience pratique sur des projets réels. Maîtrisant le développement front-end et back-end, ainsi que les technologies modernes et frameworks fort. Motivé, curieux et en apprentissage continu."
                       : currentLanguage === 'AR'
                         ? 'أنا مطور ويب شامل شغوف وخريج معهد تكنولوجيا المعلومات، أمتلك خبرة عملية من خلال المشاركة في مشاريع واقعية. متمكّن من تطوير تطبيقات الواجهة الأمامية والخلفية. خريج كلية الحاسبات والمعلومات من جامعة المنصورة، ومهاراتي تشمل التعامل مع التقنيات والأُطر الحديثة. مدفوع بشغف التعلم المستمر ودافع ذاتي عالٍ.'
-                        : "Passionate Full Stack Developer and ITI graduate with hands on experience in real-world projects. Versed in developing both client-side and server-side applications. Computer Science graduate from Mansoura University, Skilled in modern technologies and frameworks. Driven by continuous learning and self-motivated."}
+                        : "Passionate Full Stack Developer and ITI graduate with hands on experience in real-world projects. Versed in developing both client-side and server-side applications. Computer Science graduate from Mansoura University, Skilled in modern technologies and frameworks, and proactive in continuous learning."}
                   </p>
                   <p className="text-justify mt-4 text-sm sm:text-base">
                     {currentLanguage === 'FR'
                       ? "Mon parcours en développement web a débuté il y a plusieurs années, au cours desquelles j'ai réalisé divers projets innovants, allant de sites pour petites entreprises à des plateformes complexes. Je m'attache toujours à relier design et fonctionnalité, en assurant des performances fluides et un code de haute qualité."
                       : currentLanguage === 'AR'
                         ? 'بدأت رحلتي في مجال تطوير الويب منذ عدة سنوات، وخلالها عملت على مجموعة متنوعة من المشاريع، من مواقع الشركات الصغيرة إلى المنصّات الإلكترونية المعقّدة. ركّز عملي على الربط بين التصميم والوظائف البرمجية، مع ضمان أداء سلس عبر جميع طبقات التطوير والحفاظ على جودة عالية في كتابة الكود.'
-                        : "My journey in web development began several years ago, during which I've worked on range of projects, from small business websites to complex platforms. My work has focused on bridging design and functionality, ensuring smooth performance across all layers of development while maintaining high code quality."}
+                        : "My journey in web development began several years ago, during which I’ve built projects ranging from small websites to complex platforms.I've focused in My work on bridging design and functionality, ensuring smooth performance across all layers of development while maintaining high code quality."}
                   </p>
                   <p className="text-justify mt-4 text-sm sm:text-base">
                     {currentLanguage === 'FR'
                       ? "Lorsque je ne code pas, j'explore les technologies émergentes, pratiques et innovantes, contribue à l'open source et partage mes connaissances avec la communauté des développeurs — restant à jour et en affinant mes compétences techniques. Je suis toujours enthousiaste à l'idée de créer des projets impactants.."
                       : currentLanguage === 'AR'
                         ? 'عندما لا أكون منشغلًا بالبرمجة، أستكشف التقنيات الحديثة، وأساهم في مشاريع المصادر المفتوحة، وأشارك المعرفة مع مجتمع المطورين — مما يساعدني على البقاء مطّلعًا، محبًا للاستكشاف وأواصل تطوير مهاراتي التقنية باستمرار. أنا دائمًا متحمّس لبناء أشياء تُحدث فرقًا حقيقيًا.'
-                        : "When I'm not coding, I explore emerging technologies, contribute to open source, and share knowledge with the developer community — staying current, curious, and continuously refine my technical skills. I'm always eager to build things that make a difference"}
+                        : "When I'm not coding, I explore emerging technologies, contribute to open source, and share knowledge with the developer community — staying curious and sharpening my skills. I'm always eager to build things that make an impact."}
                   </p>
                 </div>
               </div>
