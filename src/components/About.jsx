@@ -83,14 +83,14 @@ const About = ({ currentLanguage = 'EN' }) => {
                       ? "Développeur Full Stack passionné, diplômé de l'ITI et de la Faculté des Sciences Informatiques de Mansoura, avec une expérience pratique sur des projets réels. Maîtrisant le développement front-end et back-end, ainsi que les technologies modernes et frameworks fort. Motivé, curieux et en apprentissage continu."
                       : currentLanguage === 'AR'
                         ? 'أنا مطور ويب شامل شغوف وخريج معهد تكنولوجيا المعلومات، أمتلك خبرة عملية من خلال المشاركة في مشاريع واقعية. متمكّن من تطوير تطبيقات الواجهة الأمامية والخلفية. خريج كلية الحاسبات والمعلومات من جامعة المنصورة، ومهاراتي تشمل التعامل مع التقنيات والأُطر الحديثة. مدفوع بشغف التعلم المستمر ودافع ذاتي عالٍ.'
-                        : "Passionate Full Stack Developer and ITI graduate with hands on experience in real-world projects. Versed in developing both client-side and server-side applications. Computer Science graduate from Mansoura University, Skilled in modern technologies and frameworks, and proactive in continuous learning."}
+                        : "Passionate Full Stack Developer and ITI graduate with hands on experience in real-world projects. Versed in developing both client-side and server-side applications. Computer Science graduate from Mansoura University, Skilled in modern technologies and proactive in continuous learning."}
                   </p>
                   <p className="text-justify mt-4 text-sm sm:text-base">
                     {currentLanguage === 'FR'
                       ? "Mon parcours en développement web a débuté il y a plusieurs années, au cours desquelles j'ai réalisé divers projets innovants, allant de sites pour petites entreprises à des plateformes complexes. Je m'attache toujours à relier design et fonctionnalité, en assurant des performances fluides et un code de haute qualité."
                       : currentLanguage === 'AR'
                         ? 'بدأت رحلتي في مجال تطوير الويب منذ عدة سنوات، وخلالها عملت على مجموعة متنوعة من المشاريع، من مواقع الشركات الصغيرة إلى المنصّات الإلكترونية المعقّدة. ركّز عملي على الربط بين التصميم والوظائف البرمجية، مع ضمان أداء سلس عبر جميع طبقات التطوير والحفاظ على جودة عالية في كتابة الكود.'
-                        : "My journey in web development began several years ago, during which I’ve built projects ranging from small websites to complex platforms.I've focused in My work on bridging design and functionality, ensuring smooth performance across all layers of development while maintaining high code quality."}
+                        : "My journey in web development began several years ago, during which I’ve built projects ranging from small websites to complex platforms. I've focused in My work on bridging design and functionality, ensuring smooth performance across all layers of development while maintaining high code quality."}
                   </p>
                   <p className="text-justify mt-4 text-sm sm:text-base">
                     {currentLanguage === 'FR'
