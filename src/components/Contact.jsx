@@ -57,7 +57,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
     {
       icon: FiMail,
       label: currentLanguage === 'AR' ? 'البريد الإلكتروني' : 'Email',
-      value: 'samer.baher74@gmail.com',
+      value: 'isamerbaher74@gmail.com',
       color: 'from-blue-600 to-blue-700',
       labelColor: 'text-blue-600 dark:text-blue-400',
       valueColor: 'text-gray-600 dark:text-gray-300',
