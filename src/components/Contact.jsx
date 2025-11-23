@@ -235,7 +235,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                   </div>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50/90 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-8">
+                <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50/90 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-8 max-w-3xl mx-auto">
                   {error && (
                     <div className="bg-red-100 dark:bg-red-500/10 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 p-4 rounded-lg text-sm">
                       {error}
@@ -318,9 +318,9 @@ const Contact = ({ currentLanguage = 'EN' }) => {
             </motion.div>
 
             {/* Contact Information */}
-            <motion.div variants={itemVariants} className="space-y-8">
+            <motion.div variants={itemVariants} className="space-y-8 max-w-3xl mx-auto">
               <div className="pt-12 mt-8">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-6">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-6 text-center sm:text-left">
                   {currentLanguage === 'FR' ? 'Coordonnées' : currentLanguage === 'AR' ? 'معلومات الاتصال' : 'Contact Information'}
                 </h3>
                 <div className="space-y-6">
