@@ -53,7 +53,7 @@ const Skills = ({ currentLanguage = 'EN' }) => {
 
 
   return (
-    <section id="skills" className="pt-14 pb-8 md:py-20 bg-[#CCCCCC] dark:bg-gray-900 transition-colors duration-300">
+    <section id="skills" className="relative pt-14 pb-8 md:py-20 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -77,7 +77,7 @@ const Skills = ({ currentLanguage = 'EN' }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center mb-4">
                 <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg mr-4">

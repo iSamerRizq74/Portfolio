@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { initGA, trackPageView } from './utils/analytics';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaTelegram, FaPhone, FaGithub, FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
+import FloatingCircles from './components/FloatingCircles';
 import './index.css';
 
 // Lazy load components
@@ -151,9 +152,11 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen transition-colors duration-300 relative">
-      <Suspense fallback={<LoadingFallback />}>
-        <Navbar
+    <div className="relative min-h-screen bg-transparent">
+      <FloatingCircles count={100} />
+      <div className="relative z-10">
+        <Suspense fallback={<LoadingFallback />}>
+          <Navbar
           darkMode={darkMode}
           toggleDarkMode={toggleDarkMode}
           onWhatsAppClick={handleWhatsAppClick}
@@ -168,11 +171,21 @@ function App() {
             path="/"
             element={
               <>
-                <Hero currentLanguage={currentLanguage} />
-                <About currentLanguage={currentLanguage} />
-                <Skills currentLanguage={currentLanguage} />
-                <Work currentLanguage={currentLanguage} />
-                <Contact currentLanguage={currentLanguage} />
+                <div className="relative z-0">
+                  <Hero currentLanguage={currentLanguage} />
+                </div>
+                <div className="relative z-0">
+                  <About currentLanguage={currentLanguage} />
+                </div>
+                <div className="relative z-0">
+                  <Skills currentLanguage={currentLanguage} />
+                </div>
+                <div className="relative z-0">
+                  <Work currentLanguage={currentLanguage} />
+                </div>
+                <div className="relative z-0">
+                  <Contact currentLanguage={currentLanguage} />
+                </div>
               </>
             }
           />
@@ -393,8 +406,9 @@ function App() {
         </AnimatePresence>
 
         <ScrollButtons />
-      </Suspense>
-    </div>
+          </Suspense>
+        </div>
+      </div>
   );
 }
 

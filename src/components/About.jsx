@@ -43,7 +43,7 @@ const About = ({ currentLanguage = 'EN' }) => {
   return (
     <section
       id="about"
-      className="py-12 sm:py-16 bg-[#E6E6E6] dark:bg-gray-800/60 transition-colors duration-300"
+      className="relative py-12 sm:py-16 bg-[#E6E6E6] dark:bg-gray-800/60 transition-colors duration-300"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

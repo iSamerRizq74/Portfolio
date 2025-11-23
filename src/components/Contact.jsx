@@ -171,7 +171,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#CCCCCC] dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
+    <section id="contact" className="relative py-12 sm:py-16 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent transition-colors duration-300">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl" />
@@ -187,7 +187,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
           viewport={{ once: true, amount: 0.3 }}
           className="max-w-7xl mx-auto"
         >
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
             <motion.div variants={itemVariants} className="space-y-8">
               <div className="text-center mb-6 sm:mb-8">
                 <motion.h2
@@ -327,26 +327,28 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                   {contactInfo.map((item, index) => (
                     <div
                       key={index}
-                      className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-4 hover:shadow-lg transition-all duration-300"
+                      className="bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/80 dark:border-gray-700/50 rounded-xl p-4 sm:p-5 hover:shadow-lg transition-all duration-300"
                     >
                       <div className="flex items-center justify-between w-full">
-                        <div className="flex items-center space-x-4">
-                          <div className={`p-3 rounded-full bg-gradient-to-r ${item.color} text-white`}>
+                        <div className="flex items-center space-x-4 flex-grow">
+                          <div className={`p-3 rounded-full bg-gradient-to-r ${item.color} text-white flex-shrink-0`}>
                             <item.icon className="w-5 h-5" />
                           </div>
-                          <div>
-                            <p className={`text-sm font-medium ${item.labelColor}`}>{item.label}</p>
-                            <p className={item.valueColor}>{item.value}</p>
+                          <div className="flex-grow">
+                            <div className="text-sm sm:text-base font-medium ${item.labelColor}">{item.label}</div>
+                            <p className={`${item.label === 'Email' || item.label === 'البريد الإلكتروني' ? 'text-[12.5px] sm:text-base' : 'text-sm sm:text-base'} ${item.valueColor} break-all pr-1`}>
+                              {item.value}
+                            </p>
                           </div>
                         </div>
                         {item.copyable && (
                           <button
                             onClick={() => copyToClipboard(item.value, index)}
-                            className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
-                            aria-label={currentLanguage === 'AR' ? 'نسخ' : 'Copy to clipboard'}
+                            className="text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors p-2 ml-2 self-center"
+                            aria-label={currentLanguage === 'AR' ? 'نسخ' : 'Copy'}
                           >
                             {copiedItem === index ? (
-                              <FiCheck className="w-5 h-5 text-green-500" />
+                              <FiCheck className="w-5 h-5" />
                             ) : (
                               <FiCopy className="w-5 h-5" />
                             )}
@@ -362,7 +364,7 @@ const Contact = ({ currentLanguage = 'EN' }) => {
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
 
                   </h3>
-                  <div className="flex flex-wrap justify-center sm:justify-start gap-4">
+                  <div className="flex flex-nowrap overflow-x-auto pb-2 sm:pb-0 justify-center sm:justify-start gap-3 sm:gap-4 w-full">
                     {socialLinks.map((social, index) => (
                       <motion.a
                         key={index}

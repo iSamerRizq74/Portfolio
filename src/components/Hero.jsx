@@ -154,7 +154,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-[#CCCCCC] dark:bg-gray-900 pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden pt-20">
       {/* Background elements */}
       <motion.div
         className="absolute inset-0 z-0"
@@ -162,8 +162,7 @@ const Hero = ({ currentLanguage = 'EN' }) => {
         initial="hidden"
         animate="show"
       >
-        <div className="absolute inset-0 bg-[#CCCCCC] dark:bg-gray-900" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9IiMxMTExMTEiLz4KICA8cGF0aCBkPSJNMzYgMzRWNjBINnYtMjZoMzB6TTYgMjZoMzBWNmgzMHYyMHoiIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPgo8L3N2Zz4=')] opacity-5 dark:opacity-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-gray-900/80 dark:to-transparent" />
       </motion.div>
 
       <div className="relative z-10 w-full max-w-[98%] 2xl:max-w-[95%] 3xl:max-w-[1400px] mx-auto px-0 md:px-6">
