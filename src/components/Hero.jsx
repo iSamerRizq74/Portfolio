@@ -3,7 +3,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { useState, useEffect } from 'react';
 
 // Hero image path
-const heroImage = '/images/samer.jpg';
+const heroImage = "/images/samer.jpg";
 
 const Hero = ({ currentLanguage = 'EN' }) => {
   const prefersReducedMotion = useReducedMotion();
